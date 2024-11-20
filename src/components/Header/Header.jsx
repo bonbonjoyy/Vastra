@@ -53,7 +53,7 @@ export default function Header({ ...props }) {
     return (
     <header
         {...props}
-        className={`${props.className} flex justify-center items-center py-[18px] bg-gray-300`}
+        className={`${props.className} flex justify-center items-center py-[18px] bg-white border-b-2 border-b-black`}
     >
         <div className="container-xs flex items-center justify-between gap-5 px-5 w-full">
         < div className="flex items-center pl-[120px]">
