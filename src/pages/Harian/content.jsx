@@ -6,8 +6,8 @@ function Harian() {
   const products = [
     { image: '/asset/image/dod.svg', text: 'Denim on Denim', link: '/Denim' },
     { image: '/asset/image/casual.svg', text: 'Casual', link: '/Casual' },
-    { image: '/asset/image/smartcasual.svg', text: 'Smart Casual', link: '/smartcasual' },
-    { image: '/asset/image/tropical.svg', text: 'Tropical', link: '/tropical' },
+    { image: '/asset/image/smartcasual.svg', text: 'Smart Casual', link: '/Smartcasual' },
+    { image: '/asset/image/tropical.svg', text: 'Tropical', link: '/Tropical' },
     { image: '/asset/image/flanel.svg', text: 'Flannel', link: '/Flannel' },
     { image: '/asset/image/sporty.svg', text: 'Sporty', link: '/Sporty' },
     { image: '/asset/image/polo.svg', text: 'Polo', link: '/Polo' },

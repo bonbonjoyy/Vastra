@@ -15,6 +15,7 @@ import ProdukJaket from "./pages/Produk Jaket";
 import ProdukAksesoris from "./pages/Produk Aksesoris";
 import ProdukDetail from "./pages/Produk Detail";
 
+
 const App = () => {
   const location = useLocation();
 

@@ -6,10 +6,10 @@ import SectionDivider from '../../components/SectionDivider/SectionDivider';
 function Formal() {
   const products = [
     { image: '/asset/image/fullbody.svg', text: 'FullBody Suit', link: '/Fullbodysuit' },
-    { image: '/asset/image/casualformal.svg', text: 'Casual' ,link: '/Out' },
-    { image: '/asset/image/smartc.svg', text: 'SmartCasual' , link: '/O'},
-    { image: '/asset/image/preppy.svg', text: 'Preppy Cardigan' , link: '/I' },
-    { image: '/asset/image/preppysweater.svg', text: 'Preppy Sweater' ,link: '/H' },
+    { image: '/asset/image/casualformal.svg', text: 'Casual' ,link: '/Casuall' },
+    { image: '/asset/image/smartc.svg', text: 'Smart Casual' , link: '/SmartCasuall'},
+    { image: '/asset/image/preppy.svg', text: 'Preppy Cardigan' , link: '/PreppyCardigan' },
+    { image: '/asset/image/preppysweater.svg', text: 'Preppy Sweater' ,link: '/PreppySweater' },
     { image: '/asset/image/batik.svg', text: 'Batik', link:'/Batik' },
   ];
 
@@ -23,7 +23,7 @@ function Formal() {
           className="w-full h-[239px] object-cover"
         />
         <div className="absolute left-20 top-1/2 transform -translate-y-1/2 text-white text-4xl font-bold space-y-4">
-          <p>Galeri Vastra</p>
+          <p></p>
         </div>
       </div>
       <SectionDivider />
