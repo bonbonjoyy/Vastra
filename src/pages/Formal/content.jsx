@@ -8,8 +8,8 @@ function Formal() {
     { image: '/asset/image/fullbody.svg', text: 'FullBody Suit', link: '/Fullbodysuit' },
     { image: '/asset/image/casualformal.svg', text: 'Casual' ,link: '/Casuall' },
     { image: '/asset/image/smartc.svg', text: 'Smart Casual' , link: '/SmartCasuall'},
-    { image: '/asset/image/preppy.svg', text: 'Preppy Cardigan' , link: '/I' },
-    { image: '/asset/image/preppysweater.svg', text: 'Preppy Sweater' ,link: '/H' },
+    { image: '/asset/image/preppy.svg', text: 'Preppy Cardigan' , link: '/PreppyCargigan' },
+    { image: '/asset/image/preppysweater.svg', text: 'Preppy Sweater' ,link: '/PreppySweater' },
     { image: '/asset/image/batik.svg', text: 'Batik', link:'/Batik' },
   ];
 
