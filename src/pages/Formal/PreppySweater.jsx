@@ -2,11 +2,11 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import Header from '../../components/Header/Header';
 
-function Casual() {
+function Hiphop() {
   const navigate = useNavigate(); 
 
   const handleBackClick = () => {
-    navigate('/Harian'); 
+    navigate('/Formal'); 
   };
 
   return (
@@ -20,22 +20,20 @@ function Casual() {
       <div className="flex flex-col md:flex-row h-full">
         <div className="flex-max-w-[50%] flex-shrink-0 h-full">
           <img
-            src="/asset/image/dc9867c8542978c8375a824d60ebb1f6 1.svg"
-            alt="Casual"
+            src="/asset/image/image 235.svg"
+            alt="Denim Fashion"
             className="w-full h-full object-cover"
           />
         </div>
         
         <div className="flex-1 md:pl-10 md:pr-16 pr-10 py-10 bg-pink-50 flex flex-col justify-start items-start text-left h-full">
-        <h2 className="text-5xl font-bold mt-16 mb-1  text-left">Casual</h2> {/* Align text to the left */}
+        <h2 className="text-5xl font-bold mt-16 mb-1  text-left">Preppy Sweater</h2> {/* Align text to the left */}
           
           <p className="text-black mt-6 mb-1 text-justify"> {/* Adjusted the margin-top to push the text lower */}
-            Outfit casual untuk pria adalah gaya busana yang sederhana dan santai, biasanya digunakan untuk kegiatan sehari-hari atau acara informal. Outfit casual biasanya terdiri dari bahan-bahan yang nyaman dan tidak terlalu formal, seperti kaos, celana pendek atau jeans, sepatu sneakers atau sandal, dan aksesori seperti topi atau kacamata hitam. Gaya ini sering kali dianggap sebagai gaya yang mudah dipadukan dan dapat disesuaikan dengan selera pribadi. Outfit casual juga dapat memberikan tampilan yang terbuka dan tidak terlalu kaku, serta dapat memberikan kesan yang santai dan tidak terlalu serius.
-          </p>
+          Outfit preppy sweater untuk pria adalah gaya berpakaian yang terinspirasi oleh budaya dan estetika universitas atau sekolah bergengsi di Amerika Serikat, dengan fokus pada tampilan yang rapi, terstruktur, dan sedikit klasik. Gaya preppy sering melibatkan pakaian yang memiliki elemen formal atau semi-formal yang dipadukan dengan kesan santai. Sweater preppy biasanya terbuat dari bahan seperti wol, kasmir, atau cotton, dengan desain yang simpel dan elegan. Gaya ini juga dikenal dengan penggunaan warna-warna cerah, pola-pola ikonik seperti garis-garis, argyle, atau pola kabel (cable knit), dan sering dipadukan dengan celana chinos atau rok midi.          </p>
           
           <p className="text-black mt-1 mb-8 text-justify"> {/* Added more margin-top to further space from the first paragraph */}
-            Kelebihan casual dapat memberikan kesan yang ingin tampil santai namun tetap stylish. Dengan sedikit usaha dalam padu padan, gaya ini dapat mencerminkan kepribadian dan memberikan kenyamanan sepanjang hari.
-          </p>
+          Kelebihan preppy sweater dapat memberikan kesan tampil elegan, terstruktur, dan nyaman dalam satu tampilan. Gaya ini cocok untuk berbagai kesempatan, memberikan kesan cerdas dan modis tanpa perlu berusaha terlalu keras.          </p>
           <button 
             className="px-8 py-2 border-2 border-black text-black hover:bg-black hover:text-white transition duration-300 mt-1 mb-6"
             onClick={handleBackClick}
@@ -48,4 +46,4 @@ function Casual() {
   );
 }
 
-export default Casual;
+export default Hiphop;

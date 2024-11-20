@@ -2,11 +2,11 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import Header from '../../components/Header/Header';
 
-function Casual() {
+function Theroyal() {
   const navigate = useNavigate(); 
 
   const handleBackClick = () => {
-    navigate('/Harian'); 
+    navigate('/Formal'); 
   };
 
   return (
@@ -20,22 +20,20 @@ function Casual() {
       <div className="flex flex-col md:flex-row h-full">
         <div className="flex-max-w-[50%] flex-shrink-0 h-full">
           <img
-            src="/asset/image/dc9867c8542978c8375a824d60ebb1f6 1.svg"
-            alt="Casual"
+            src="/asset/image/image 5.svg"
+            alt="Denim Fashion"
             className="w-full h-full object-cover"
           />
         </div>
         
         <div className="flex-1 md:pl-10 md:pr-16 pr-10 py-10 bg-pink-50 flex flex-col justify-start items-start text-left h-full">
-        <h2 className="text-5xl font-bold mt-16 mb-1  text-left">Casual</h2> {/* Align text to the left */}
+        <h2 className="text-5xl font-bold mt-16 mb-1  text-left">Preppy Cardigan</h2> {/* Align text to the left */}
           
           <p className="text-black mt-6 mb-1 text-justify"> {/* Adjusted the margin-top to push the text lower */}
-            Outfit casual untuk pria adalah gaya busana yang sederhana dan santai, biasanya digunakan untuk kegiatan sehari-hari atau acara informal. Outfit casual biasanya terdiri dari bahan-bahan yang nyaman dan tidak terlalu formal, seperti kaos, celana pendek atau jeans, sepatu sneakers atau sandal, dan aksesori seperti topi atau kacamata hitam. Gaya ini sering kali dianggap sebagai gaya yang mudah dipadukan dan dapat disesuaikan dengan selera pribadi. Outfit casual juga dapat memberikan tampilan yang terbuka dan tidak terlalu kaku, serta dapat memberikan kesan yang santai dan tidak terlalu serius.
-          </p>
+          Outfit preppy cardigan untuk pria adalah kombinasi gaya berpakaian yang menggabungkan kesan rapi, elegan, dan sedikit klasik, dengan sentuhan modern yang nyaman. Cardigan, sebagai salah satu elemen utama, memberikan kehangatan dan kelembutan, sekaligus menambah dimensi pada tampilan preppy yang khas. Gaya ini biasanya melibatkan pakaian yang terinspirasi dari budaya sekolah atau universitas, sering kali dengan sentuhan warna-warna cerah dan pola yang bersih. Outfit preppy cardigan biasanya menciptakan tampilan yang terorganisir, cerdas, dan sedikit "intellectual."          </p>
           
           <p className="text-black mt-1 mb-8 text-justify"> {/* Added more margin-top to further space from the first paragraph */}
-            Kelebihan casual dapat memberikan kesan yang ingin tampil santai namun tetap stylish. Dengan sedikit usaha dalam padu padan, gaya ini dapat mencerminkan kepribadian dan memberikan kenyamanan sepanjang hari.
-          </p>
+          Kelebihan preppy cardigan akan mendapatkan keseimbangan antara gaya yang rapi, elegan, namun tetap santai. Gaya ini sangat cocok bagi Anda yang ingin tampil terorganisir dan cerdas tanpa harus mengorbankan kenyamanan.          </p>
           <button 
             className="px-8 py-2 border-2 border-black text-black hover:bg-black hover:text-white transition duration-300 mt-1 mb-6"
             onClick={handleBackClick}
@@ -48,4 +46,4 @@ function Casual() {
   );
 }
 
-export default Casual;
+export default Theroyal;

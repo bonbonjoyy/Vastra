@@ -27,10 +27,14 @@ function Smartcasual() {
         </div>
         
         <div className="flex-1 md:pl-10 md:pr-16 pr-10 py-10 bg-pink-50 flex flex-col justify-start items-start text-left h-full">
-        <h2 className="text-5xl font-bold mb-6">Smart Casual</h2>
-          <p className="text-black mt-1 mb-8 text-justify">          Smart Casual adalah sebutan untuk busana profesional yang memadukan pakaian klasik dengan kasual atau trendi. Itu sebabnya, Smart Casual membuat tampilan rapi dan profesional tapi tidak terlalu formal. Tidak terlalu resmi, tapi juga tidak terlalu santai.
-          Gaya smart casual ini seringkali menjadi dress code untuk ngantor di beberapa perusahaan. Outfit ini juga kerap jadi dress code di berbagai acara formal lainnya. Itu sebabnya, outfit smart casual kini semakin digandrungi para millennial dan genz di Tanah Air. Begini panduannya untuk para pria dan wanita.
-          </p>
+        <h2 className="text-5xl font-bold mt-16 mb-1  text-left">Smart Casual</h2> {/* Align text to the left */}
+          
+          <p className="text-black mt-6 mb-1 text-justify"> {/* Adjusted the margin-top to push the text lower */}
+          Outfit smart casual untuk pria adalah gaya berpakaian yang memadukan elemen kasual (santai) dengan sentuhan formal untuk menciptakan tampilan yang rapi namun tetap nyaman. Gaya ini fleksibel dan cocok untuk berbagai situasi semi-formal, seperti acara kantor yang santai, makan malam, atau pertemuan dengan klien.          </p>
+          
+          <p className="text-black mt-1 mb-8 text-justify"> {/* Added more margin-top to further space from the first paragraph */}
+          Kelebihan smart casual adalah bahwa ia dapat memberikan tampilan yang terlihat rapi dan terorganisir, namun tetap terlihat santai dan tidak terlalu formal. Selain itu, outfit smart casual juga dapat memberikan kesan yang terlihat profesional dan terlihat rapi, namun tetap terlihat santai dan tidak terlalu terbebani.          </p>
+
           <button 
             className="px-8 py-2 border-2 border-black text-black hover:bg-black hover:text-white transition duration-300 mt-1 mb-6"
             onClick={handleBackClick}

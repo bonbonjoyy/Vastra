@@ -6,8 +6,8 @@ import SectionDivider from '../../components/SectionDivider/SectionDivider';
 function Formal() {
   const products = [
     { image: '/asset/image/fullbody.svg', text: 'FullBody Suit', link: '/Fullbodysuit' },
-    { image: '/asset/image/casualformal.svg', text: 'Casual' ,link: '/Out' },
-    { image: '/asset/image/smartc.svg', text: 'SmartCasual' , link: '/O'},
+    { image: '/asset/image/casualformal.svg', text: 'Casual' ,link: '/Casuall' },
+    { image: '/asset/image/smartc.svg', text: 'Smart Casual' , link: '/SmartCasuall'},
     { image: '/asset/image/preppy.svg', text: 'Preppy Cardigan' , link: '/I' },
     { image: '/asset/image/preppysweater.svg', text: 'Preppy Sweater' ,link: '/H' },
     { image: '/asset/image/batik.svg', text: 'Batik', link:'/Batik' },

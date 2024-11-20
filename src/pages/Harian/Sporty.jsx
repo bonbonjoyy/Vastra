@@ -27,10 +27,13 @@ function Sporty() {
         </div>
         
         <div className="flex-1 md:pl-10 md:pr-16 pr-10 py-10 bg-pink-50 flex flex-col justify-start items-start text-left h-full">
-        <h2 className="text-5xl font-bold mb-6">Sporty</h2>
-        <p className="text-black mt-1 mb-8 text-justify">
-          Gabungan antara gaya olahraga dan gaya santai yang menghadirkan look kasual yang tetap nyaman. Namun di sisi lain punya sentuhan sporty dan energik. Bahan pakaian sporty style didominasi oleh material yang ringan dan elastis, memungkinkan mereka untuk bergerak dengan bebas tanpa merasa terbatasi
-          </p>
+        <h2 className="text-5xl font-bold mt-16 mb-1  text-left">Sporty</h2> {/* Align text to the left */}
+          
+          <p className="text-black mt-6 mb-1 text-justify"> {/* Adjusted the margin-top to push the text lower */}
+          Outfit sporty untuk pria adalah gaya berpakaian yang mengutamakan kenyamanan dan fungsionalitas, dengan sentuhan sporty atau atletik. Gaya ini sering kali melibatkan pakaian dan aksesori yang dirancang khusus untuk aktivitas fisik atau olahraga, namun sekarang juga banyak digunakan untuk tampilan kasual sehari-hari. Outfit sporty biasanya terdiri dari pakaian yang terbuat dari bahan elastis, ringan, dan breathable, serta desain yang simpel namun modern.          </p>
+          
+          <p className="text-black mt-1 mb-8 text-justify"> {/* Added more margin-top to further space from the first paragraph */}
+          Kelebihan sporty meliputi memberikan kesan yang terlihat aktif dan energik, serta dapat memberikan kesan yang terlihat nyaman dan terinspirasi dari dunia olahraga.           </p>
           <button 
             className="px-8 py-2 border-2 border-black text-black hover:bg-black hover:text-white transition duration-300 mt-1 mb-6"
             onClick={handleBackClick}
