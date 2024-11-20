@@ -6,9 +6,9 @@ import { useForm } from "react-hook-form"; // Import React Hook Form
 
 export default function RegisterRow() {
     const [showPassword, setShowPassword] = useState(false);
-    const [showNotification, setShowNotification] = useState(false); // State untuk notifikasi
-    const { register, handleSubmit, formState: { errors } } = useForm(); // Inisialisasi React Hook Form
     const navigate = useNavigate();
+
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -16,11 +16,7 @@ export default function RegisterRow() {
 
     const onSubmit = (data) => {
         console.log('Data yang di-submit:', data);
-        setShowNotification(true); // Tampilkan notifikasi setelah pendaftaran
-        setTimeout(() => {
-            setShowNotification(false); // Sembunyikan notifikasi setelah 3 detik
-        }, 3000);
-        navigate('/?showNotification=true&source=login'); // Navigasi ke halaman home dengan parameter query
+        navigate('/?source=login'); // Navigasi ke halaman home dengan parameter query source=login
     };
 
     return (
@@ -30,13 +26,6 @@ export default function RegisterRow() {
                     <Heading as="h1" className="sm:text-[38px] md:text-[44px] text-[48px] font-bold text-blk mx-28 mb-2">
                         MASUK
                     </Heading>
-                    
-                    {/* Notifikasi */}
-                    {showNotification && (
-                        <div style={{ backgroundColor: 'green', padding: 10, borderRadius: 5, color: 'white' }}>
-                            Selamat Datang Kembali!
-                        </div>
-                    )}
 
                     <form onSubmit={handleSubmit(onSubmit)} className="mr-3 flex flex-col items-start gap-3.5 self-stretch md:mr-0">
                         <div className="gap-[18px] flex flex-col self self-stretch w-[396px]">

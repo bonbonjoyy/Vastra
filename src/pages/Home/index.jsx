@@ -6,47 +6,49 @@ import { Link as RouterLink, useLocation } from 'react-router-dom'; // Import Li
 import React, { useState, useEffect } from 'react';
 
 export default function Home() {
-  const [showNotification, setShowNotification] = useState(false);
-  const [notificationMessage, setNotificationMessage] = useState('');
-  const location = useLocation();
-  const scrollToTop = () => {
-    window.scrollTo(0, 0);
-  };
+    const [notificationMessage, setNotificationMessage] = useState('');
+    const [showNotification, setShowNotification] = useState(false);
+    const scrollToTop = () => {
+      window.scrollTo(0, 0);
+    };
 
-  useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    if (params.get('showNotification') === 'true') {
-      const source = params.get('source');
-      if (source === 'login') {
-        setNotificationMessage('Selamat datang kembali!');
-      } else if (source === 'register') {
-        setNotificationMessage('Selamat datang di Vastra!');
-      }
-      setShowNotification(true);
-      setTimeout(() => {
-        setShowNotification(false); // Sembunyikan notifikasi setelah 3 detik
-      }, 3000);
-    }
-  }, [location]);
+    useEffect(() => {
+        const queryParams = new URLSearchParams(window.location.search);
+        const source = queryParams.get('source');
 
+        if (source === 'register') {
+            setNotificationMessage('Selamat Datang di Vastra!');
+        } else if (source === 'login') {
+            setNotificationMessage('Selamat Datang Kembali!');
+        }
+
+        if (source) {
+            setShowNotification(true);
+            setTimeout(() => {
+                setShowNotification(false);
+            }, 3000);
+        }
+    }, []);
+
+    
   return (
     <>
       <title>Home Page</title>
 
       <div className="w-full bg-white-a700">
-        {showNotification && (
-          <div
-            style={{
-              backgroundColor: 'black',
-              padding: 10,
-              textAlign: 'center',
-              color: 'white',
-              opacity: showNotification ? 1 : 0,
-              transform: showNotification ? 'scale(1)' : 'scale(0.9)',
-              transition: 'opacity 0.5s ease-in-out, transform 0.5s ease-in-out',
-            }}
-          >
-            {notificationMessage}
+      {showNotification && (
+                <div
+                    style={{
+                        backgroundColor: 'black',
+                        padding: 10,
+                        textAlign: 'center',
+                        color: 'white',
+                        opacity: showNotification ? 1 : 0,
+                        transform: showNotification ? 'scale(1)' : 'scale(0.9)',
+                        transition: 'opacity 0.5s ease-in-out, transform 0.5s ease-in-out',
+                    }}
+                >
+                    {notificationMessage}
           </div>
         )}
 
