@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Heading, Img } from "../../components";
+import { Heading, Img, useCart } from "../../components";
 import { getProductById } from "../../components/ProdukData";
 import Header from "../../components/Header/Header";
 
@@ -10,6 +10,8 @@ export default function Content() {
   const [selectedSize, setSelectedSize] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+  // Menggunakan useCart hook
+  const { addToCart } = useCart();
 
   const product = getProductById(category, id);
 
@@ -29,7 +31,27 @@ export default function Content() {
       alert("Silahkan pilih ukuran terlebih dahulu");
       return;
     }
+
+    // Membuat objek produk untuk ditambahkan ke keranjang
+    const productToAdd = {
+      id: id,
+      title: product.title,
+      price: parseFloat(product.price.replace(/[^0-9]/g, "")), // Mengubah string harga ke number
+      size: category === "aksesoris" ? "ONE SIZE" : selectedSize,
+      image: product.image,
+      quantity: quantity,
+      category: category,
+    };
+
+    // Menambahkan ke keranjang
+    addToCart(productToAdd);
     alert("Produk berhasil ditambahkan ke keranjang!");
+
+    // Reset quantity ke 1 setelah menambahkan ke keranjang
+    setQuantity(1);
+    if (category !== "aksesoris") {
+      setSelectedSize("");
+    }
   };
 
   const getImageStyle = () => {
