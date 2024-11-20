@@ -20,7 +20,7 @@ function Smartcasual() {
       <div className="flex flex-col md:flex-row h-full">
         <div className="flex-max-w-[50%] flex-shrink-0 h-full">
           <img
-            src="/asset/image/4adb5681732ab72232a9c23a5702d433 1.svg"
+            src="/asset/image/smartcasual.svg"
             alt="Smartcasual"
             className="w-full h-full object-cover"
           />

@@ -20,16 +20,19 @@ function Military() {
       <div className="flex flex-col md:flex-row h-full">
         <div className="flex-max-w-[50%] flex-shrink-0 h-full">
           <img
-            src="/asset/image/image 12.svg"
+            src="/asset/image/military.svg"
             alt="Casual"
             className="w-full h-full object-cover"
           />
         </div>
         
         <div className="flex-1 md:pl-10 md:pr-16 pr-10 py-10 bg-pink-50 flex flex-col justify-start items-start text-left h-full">
-        <h2 className="text-5xl font-bold mb-6">Military</h2>
-          <p className="text-black mt-1 mb-8 text-justify">
-          Military adalah Pakaian standar yang dikenakan oleh anggota angkatan bersenjata dan paramiliter. Seragam militer memiliki berbagai tingkat formalitas, seperti seragam lengkap, seragam makan, seragam dinas, dan seragam tempur. tetapi ada juga pakian yang lebih santai seperti seragam olahraga dan seragam khusus untuk kegiatan tertentu.
+        <h2 className="text-5xl font-bold mt-16 mb-1  text-left">Military</h2>
+        <p className="text-black mt-6 mb-1 text-justify"> {/* Adjusted the margin-top to push the text lower */}
+        Outfit military untuk pria adalah Pakaian yang dirancang untuk memberikan kesan kuat dan tegas. Pakaian ini biasanya terdiri dari jaket atau coat dengan detail militer, celana atau rok, sepatu boot, dan aksesori seperti topi dan sabuk. Gaya berpakaian yang terinspirasi oleh pakaian militer, yang mengedepankan fungsionalitas, daya tahan, dan tampilan maskulin atau tangguh. Gaya ini sering kali menggunakan elemen seperti warna-warna khas militer (hijau zaitun, cokelat, beige, dan hitam), potongan pakaian yang utilitarian, serta aksesori yang terlihat kokoh.          </p>
+          <p className="text-black mt-1 mb-8 text-justify"> {/* Added more margin-top to further space from the first paragraph */}
+          Kelebihan military meliputi kesan yang tangguh, fungsional, dan stylish. Gaya ini tidak hanya memberikan kenyamanan, tetapi juga kesan yang kuat dan percaya diri, menjadikannya pilihan yang ideal untuk berbagai kesempatan.
+
           </p>
           <button 
             className="px-8 py-2 border-2 border-black text-black hover:bg-black hover:text-white transition duration-300 mt-1 mb-6"

@@ -23,7 +23,7 @@ function Formal() {
           className="w-full h-[239px] object-cover"
         />
         <div className="absolute left-20 top-1/2 transform -translate-y-1/2 text-white text-4xl font-bold space-y-4">
-          <p>Galeri Vastra</p>
+          <p></p>
         </div>
       </div>
       <SectionDivider />

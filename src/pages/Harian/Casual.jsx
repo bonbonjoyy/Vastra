@@ -20,7 +20,7 @@ function Casual() {
       <div className="flex flex-col md:flex-row h-full">
         <div className="flex-max-w-[50%] flex-shrink-0 h-full">
           <img
-            src="/asset/image/dc9867c8542978c8375a824d60ebb1f6 1.svg"
+            src="/asset/image/casual.svg"
             alt="Casual"
             className="w-full h-full object-cover"
           />

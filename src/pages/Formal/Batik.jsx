@@ -20,7 +20,7 @@ function Military() {
       <div className="flex flex-col md:flex-row h-full">
         <div className="flex-max-w-[50%] flex-shrink-0 h-full">
           <img
-            src="/asset/image/image 248.svg"
+            src="/asset/image/batik.svg"
             alt="Denim Fashion"
             className="w-full h-full object-cover"
           />

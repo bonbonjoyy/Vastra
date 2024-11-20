@@ -20,7 +20,7 @@ function Polo() {
       <div className="flex flex-col md:flex-row h-full">
         <div className="flex-max-w-[50%] flex-shrink-0 h-full">
           <img
-            src="/asset/image/image 16.svg"
+            src="/asset/image/polo.svg"
             alt="Polo"
             className="w-full h-full object-cover"
           />

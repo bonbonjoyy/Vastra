@@ -20,7 +20,7 @@ function Flannel() {
       <div className="flex flex-col md:flex-row h-full">
         <div className="flex-max-w-[50%] flex-shrink-0 h-full">
           <img
-            src="/asset/image/adfecd64d42c309460189be4e40e04d3 1.svg"
+            src="/asset/image/flanel.svg"
             alt="Flannel"
             className="w-full h-full object-cover"
           />

@@ -20,7 +20,7 @@ function Tropical() {
       <div className="flex flex-col md:flex-row h-full">
         <div className="flex-max-w-[50%] flex-shrink-0 h-full">
           <img
-            src="/asset/image/172172361162df48b0228eca3cb4d91da78d0932fd_thumbnail_750x999 1.svg"
+            src="/asset/image/tropical.svg"
             alt="Denim Fashion"
             className="w-full h-full object-cover"
           />
