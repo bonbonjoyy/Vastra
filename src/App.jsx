@@ -1,7 +1,8 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
+import Masuk from "./pages/Login/Masuk";
+import Register from "./pages/Login/Register";
+import Password from "./pages/Login/Password";
 import UserProfile from "./pages/UserProfile";
 import Harian from "./pages/Harian";
 import Formal from "./pages/Formal";
@@ -54,8 +55,9 @@ const App = () => {
     // >
     <Routes location={location}>
       <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
+      <Route path="/login" element={<Masuk />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/lupa-password" element={<Password />} />
       <Route path="/Harian/" element={<Harian />} />
       <Route path="/UserProfile/" element={<UserProfile />} />
       <Route path="/Formal/" element={<Formal />} />
