@@ -1,13 +1,8 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
-<<<<<<< HEAD
 import Masuk from "./pages/Login/Masuk";
 import Register from "./pages/Login/Register";
 import Password from "./pages/Login/Password";
-=======
-import Login from "./pages/Login";
-import Register from "./pages/Register";
->>>>>>> 992d6b7c20873a474a69820bbacbf391b0c530f4
 import UserProfile from "./pages/UserProfile";
 import Harian from "./pages/Harian";
 import Formal from "./pages/Formal";
@@ -53,14 +48,9 @@ const App = () => {
   return (
     <Routes location={location}>
       <Route path="/" element={<Home />} />
-<<<<<<< HEAD
       <Route path="/login" element={<Masuk />} />
       <Route path="/register" element={<Register />} />
       <Route path="/lupa-password" element={<Password />} />
-=======
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
->>>>>>> 992d6b7c20873a474a69820bbacbf391b0c530f4
       <Route path="/Harian/" element={<Harian />} />
       <Route path="/UserProfile/" element={<UserProfile />} />
       <Route path="/Formal/" element={<Formal />} />
@@ -72,11 +62,7 @@ const App = () => {
       <Route path="/Produk-Kami/Jaket" element={<ProdukJaket />} />
       <Route path="/Produk-Kami/Aksesoris" element={<ProdukAksesoris />} />
       <Route path="/Produk-Kami/:category/:id" element={<ProdukDetail />} />
-<<<<<<< HEAD
       <Route path="/Kreasi" element={<Kreasi />} />
-=======
-      <Route path="/Kreasi" element={<Kreasi/>}/>
->>>>>>> 992d6b7c20873a474a69820bbacbf391b0c530f4
       <Route path="/Pembayaran" element={<Pembayaran />} />
       <Route path="/detail-bank" element={<DetailBank />} />
       <Route path="/detail-ewallet" element={<DetailEwallet />} />
