@@ -83,7 +83,7 @@ export const BannerProduk = () => {
             </div>
           </>
         );
-        
+
       // 50% OFF
       default:
         return (
@@ -117,7 +117,7 @@ export const BannerProduk = () => {
   useEffect(() => {
     const interval = setInterval(nextSlide, 2000); // Ganti setiap 3 detik
 
-  // Bersihkan interval saat komponen dibersihkan
+    // Bersihkan interval saat komponen dibersihkan
     return () => clearInterval(interval);
   }, []);
 

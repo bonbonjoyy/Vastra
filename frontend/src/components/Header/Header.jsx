@@ -17,11 +17,18 @@ export default function Header({ ...props }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const { cartItems, removeFromCart, updateQuantity, getCartTotal } = useCart();
 
+  const handleLogout = () => {
+    localStorage.removeItem("token"); // Hapus token
+    navigate("/login"); // Redirect ke login
+    setProfileDropdownOpen(false); // Tutup dropdown
+  };
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  {/* Galeri Sidebar */}
+  {
+    /* Galeri Sidebar */
+  }
   const toggleDropdown = () => {
     setDropdownOpen(!isDropdownOpen);
     setProfileDropdownOpen(false);
@@ -33,7 +40,9 @@ export default function Header({ ...props }) {
     setDropdownOpen(false);
   };
 
-  {/* Icon Profil */}
+  {
+    /* Icon Profil */
+  }
   const toggleProfileDropdown = () => {
     setProfileDropdownOpen(!isProfileDropdownOpen);
     setDropdownOpen(false);
@@ -102,11 +111,13 @@ export default function Header({ ...props }) {
   return (
     <header
       {...props}
-      className={`${props.className} sticky top-0 z-50 flex justify-center items-center py-[20px] bg-white border-b-2 ${
+      className={`${
+        props.className
+      } sticky top-0 z-50 flex justify-center items-center py-[20px] bg-white border-b-2 ${
         isScrolled ? "shadow-md" : "border-b-black"
-      }`}>
+      }`}
+    >
       <div className="container-xs flex items-center justify-between gap-[2px] pr-24 w-full">
-        
         {/* Burger Menu for Small Screens */}
         <div className="sm:hidden">
           <button
@@ -132,72 +143,72 @@ export default function Header({ ...props }) {
 
           {isSidebarOpen && (
             <div
-            className={`fixed top-auto left-0 min-h-fit w-full bg-white shadow-lg border-l border-black z-50 transform transition-all duration-500 ease-in-out ${
-              isSidebarOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
-            }`}
+              className={`fixed top-auto left-0 min-h-fit w-full bg-white shadow-lg border-l border-black z-50 transform transition-all duration-500 ease-in-out ${
+                isSidebarOpen
+                  ? "translate-x-0 opacity-100"
+                  : "translate-x-full opacity-0"
+              }`}
             >
-
               <ul className="py-0 text-left">
                 {/* Galeri Sidebar */}
                 <li>
-                <div>
-                  {/* Tombol Galeri */}
-                  <button
-                    id="glery-button"
-                    className="w-full flex flex-row text-left block px-4 py-3 pt-2 border-t border-black text-md font-bold text-gray-700 hover:bg-gray-200 cursor-pointer"
-                    onClick={toggleGleryDropdown} // Fungsi toggle untuk dropdown
-                  >
-                    <span>Galeri</span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="2"
-                      stroke="currentColor"
-                      className={`w-4 h-4 ml-3 transition-transform ${
-                        isGleryDropdownOpen ? "rotate-180" : "rotate-0"
-                      }`}
+                  <div>
+                    {/* Tombol Galeri */}
+                    <button
+                      id="glery-button"
+                      className="w-full flex flex-row text-left block px-4 py-3 pt-2 border-t border-black text-md font-bold text-gray-700 hover:bg-gray-200 cursor-pointer"
+                      onClick={toggleGleryDropdown} // Fungsi toggle untuk dropdown
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
-                  </button>
+                      <span>Galeri</span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="2"
+                        stroke="currentColor"
+                        className={`w-4 h-4 ml-3 transition-transform ${
+                          isGleryDropdownOpen ? "rotate-180" : "rotate-0"
+                        }`}
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
 
-                  {/* Dropdown langsung di bawah tombol */}
-                  {isGleryDropdownOpen && (
-                    <ul className="py-2 bg-white space-y-1 ">
-                      <li>
-                        <Link
-                          to="/Harian"
-                          className="text-sm pl-14 font-normal text-blk hover:bg-black hover:text-white px-4 pb-2 block"
-                        >
-                          Harian
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          to="/formal"
-                          className="text-sm pl-14 border-t border-black font-normal text-blk hover:bg-black hover:text-white px-4 py-2 block"
-                        >
-                          Formal
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          to="/Khusus"
-                          className="text-sm pl-14 border-t border-black font-normal text-blk hover:bg-black hover:text-white px-4 pt-2 block"
-                        >
-                          Khusus
-                        </Link>
-                      </li>
-                    </ul>
-                  )}
-                </div>
-              </li>
-
+                    {/* Dropdown langsung di bawah tombol */}
+                    {isGleryDropdownOpen && (
+                      <ul className="py-2 bg-white space-y-1 ">
+                        <li>
+                          <Link
+                            to="/Harian"
+                            className="text-sm pl-14 font-normal text-blk hover:bg-black hover:text-white px-4 pb-2 block"
+                          >
+                            Harian
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            to="/formal"
+                            className="text-sm pl-14 border-t border-black font-normal text-blk hover:bg-black hover:text-white px-4 py-2 block"
+                          >
+                            Formal
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            to="/Khusus"
+                            className="text-sm pl-14 border-t border-black font-normal text-blk hover:bg-black hover:text-white px-4 pt-2 block"
+                          >
+                            Khusus
+                          </Link>
+                        </li>
+                      </ul>
+                    )}
+                  </div>
+                </li>
 
                 <li>
                   <Link
@@ -230,7 +241,7 @@ export default function Header({ ...props }) {
             </div>
           )}
         </div>
-        
+
         {/* Move Logo next to Burger Menu for Small Screens */}
         <div className="sm:hidden flex items-center ml-2">
           <Link to="/">
@@ -370,33 +381,33 @@ export default function Header({ ...props }) {
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    to="#"
-                    className="block px-3 sm:px-4 py-2 text-xs sm:text-sm text-gray-700 hover:bg-black hover:text-white"
+                  <button
+                    onClick={handleLogout}
+                    className="block w-full text-left px-3 sm:px-4 py-2 text-xs sm:text-sm text-gray-700 hover:bg-black hover:text-white"
                   >
                     Keluar
-                  </Link>
+                  </button>
                 </li>
               </ul>
             </div>
           )}
 
-            {/* Search Button */}
-            <a href="#" onClick={toggleSearchForm}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-5 h-5 sm:w-4 sm:h-4 md:w-7 md:h-7 lg:w-8 lg:h-8"
-                viewBox="0 0 24 24"
-              >
+          {/* Search Button */}
+          <a href="#" onClick={toggleSearchForm}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-5 h-5 sm:w-4 sm:h-4 md:w-7 md:h-7 lg:w-8 lg:h-8"
+              viewBox="0 0 24 24"
+            >
               <g fill="none" fillRule="evenodd">
                 <path d="m12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z"></path>
                 <path
                   fill="currentColor"
                   d="M10.5 2a8.5 8.5 0 1 0 5.262 15.176l3.652 3.652a1 1 0 0 0 1.414-1.414l-3.652-3.652A8.5 8.5 0 0 0 10.5 2M4 10.5a6.5 6.5 0 1 1 13 0a6.5 6.5 0 0 1-13 0"
                 ></path>
-            </g>
-          </svg>
-        </a>
+              </g>
+            </svg>
+          </a>
 
           {/* Search Form */}
           {isSearchVisible && (
@@ -409,7 +420,7 @@ export default function Header({ ...props }) {
                 placeholder="Cari..."
                 className="block w-full px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm text-gray-700 border border-gray-300 focus:outline-none focus:ring focus:ring-blue-500"
               />
-          </form>
+            </form>
           )}
 
           {/* Cart Button */}
@@ -423,8 +434,8 @@ export default function Header({ ...props }) {
                 fill="currentColor"
                 d="M14.559 51.953h27.586c4.218 0 6.656-2.437 6.656-7.266V20.43c0-4.828-2.461-7.266-7.36-7.266h-3.726c-.14-4.922-4.406-9.117-9.703-9.117c-5.32 0-9.586 4.195-9.727 9.117H14.56c-4.875 0-7.36 2.414-7.36 7.266v24.258c0 4.851 2.485 7.265 7.36 7.265M28.012 7.61c3.304 0 5.812 2.485 5.93 5.555h-11.86c.094-3.07 2.602-5.555 5.93-5.555M14.629 48.18c-2.344 0-3.656-1.242-3.656-3.679V20.617c0-2.437 1.312-3.68 3.656-3.68h26.766c2.296 0 3.632 1.243 3.632 3.68V44.5c0 2.438-1.336 3.68-2.953 3.68Z"
               />
-          </svg>
-        </a>
+            </svg>
+          </a>
 
           {/* Cart Sidebar */}
           <div
@@ -450,10 +461,12 @@ export default function Header({ ...props }) {
                       className="border-b border-black"
                     >
                       <div className="flex">
-                        <div className="w-[105px] h-[147px] border-r border-black
+                        <div
+                          className="w-[105px] h-[147px] border-r border-black
                                         sm:w-[105px] sm:h-[127px]
                                         md:w-[127px] md:h-[127px]
-                                        lg:w-[127px] lg:h-[147px]">
+                                        lg:w-[127px] lg:h-[147px]"
+                        >
                           <img
                             src={item.image}
                             alt={item.title}
@@ -464,16 +477,20 @@ export default function Header({ ...props }) {
                             }`}
                           />
                         </div>
-                        <div className="flex-1 pr-5 pl-3 py-4
+                        <div
+                          className="flex-1 pr-5 pl-3 py-4
                                         sm:px-4 sm:py-4
                                         md:px-4 md:py-4
-                                        lg:px-8 lg:py-4">
+                                        lg:px-8 lg:py-4"
+                        >
                           <div className="flex justify-between">
                             <div>
-                              <h3 className="text-sm font-bold
+                              <h3
+                                className="text-sm font-bold
                                               sm:text:sm 
                                               md:text-md 
-                                              lg:text-lg">
+                                              lg:text-lg"
+                              >
                                 {item.title}
                               </h3>
                               {item.category !== "aksesoris" && (
@@ -481,11 +498,13 @@ export default function Header({ ...props }) {
                                   Ukuran: {item.size}
                                 </p>
                               )}
-                              <p className="text-sm mt-1 font-bold text-gray-600
+                              <p
+                                className="text-sm mt-1 font-bold text-gray-600
                                             sm:text-md sm:mt-1
                                             md:text-lg md:mt-0
                                             md:text-lg lg:mt-0
-                                            ">
+                                            "
+                              >
                                 Rp {item.price.toLocaleString()}
                               </p>
                             </div>
@@ -604,7 +623,7 @@ export default function Header({ ...props }) {
               onClick={toggleCart}
             />
           )}
-          </div>
+        </div>
       </div>
     </header>
   );

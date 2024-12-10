@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import api from "../../utils/api";
 
 export default function Password() {
   const [isEmailSent, setIsEmailSent] = useState(false);
@@ -10,27 +11,54 @@ export default function Password() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log("Data yang di-submit:", data);
-    setIsEmailSent(true);
+  const onSubmit = async (data) => {
+    try {
+      // Tampilkan pesan sukses
+      setIsEmailSent(true);
+      alert("Link reset password telah dikirim ke email Anda");
+    } catch (error) {
+      alert("Gagal mengirim email reset password");
+    }
   };
 
   return (
-    <div className="flex justify-center min-h-screen bg-white">
-      <div className="w-full max-w-[1220px] mx-auto flex flex-col lg:flex-row">
-        {/* Form Section */}
-        <div
-          className="w-full order-2 lg:order-1 lg:w-1/2 flex flex-col items-center 
-                              mt-8 lg:mt-[355px] px-4 sm:px-6 lg:px-8"
-        >
-          <div className="text-center mb-8 lg:mb-14">
-            <h1 className="font-helvetica text-[32px] lg:text-[48px] font-bold text-black">
-              PULIHKAN
-              <br />
-              KATA SANDI
-            </h1>
-          </div>
+    <div className="flex justify-center min-h-screen bg-white mb-8 lg:mb-0">
+      <div className="max-w-[1220px] mx-auto flex flex-col lg:flex-row w-full">
+        {/* Bagian Gambar */}
+        <div className="flex-1 flex items-center justify-center sm:pr-2 md:pr-4 lg:pr-5 md:justify-end w-full md:mb-0 md:order-2 relative lg:justify-end overflow-hidden">
+          <img
+            src="asset/image/login.svg"
+            alt="Login illustration"
+            className="w-[180px] sm:w-[180px] sm:mt-4 sm:h-auto
+                      md:w-1/2 md:h-auto
+                      lg:w-[68.5%] lg:mr-24 lg:h-auto lg:mt-0
+                      object-contain transition-all duration-300"
+          />
+          <div
+            className="absolute inset-0 mt-[100px] lg:mt-[203px] 
+                      bg-gradient-to-b from-transparent to-white/53"
+          />
+        </div>
 
+        {/* Bagian Form atau Notifikasi */}
+        <div
+          className="flex flex-col items-start gap-6 w-full px-4 pl-6
+                    sm:items-center sm:mt-4 sm:pl-4
+                    md:w-[50%] md:px-8 md:order-1
+                    lg:mt-[170px] lg:pl-24"
+        >
+          <h1
+            className="text-[32px] font-helvetica ml-[70px] font-bold text-black 
+                      sm:ml-[22px] text-center
+                      md:text-[48px]
+                      lg:ml-[0px]"
+          >
+            PULIHKAN
+            <br />
+            KATA SANDI
+          </h1>
+
+          {/* Form Section */}
           <div className="w-full max-w-[330px] sm:max-w-[360px] lg:max-w-[396px]">
             {isEmailSent ? (
               <div className="space-y-4">
@@ -85,26 +113,6 @@ export default function Password() {
                 </div>
               </form>
             )}
-          </div>
-        </div>
-
-        {/* Image Section */}
-        <div
-          className="w-full order-1 lg:order-2 lg:w-1/2 relative flex justify-center lg:justify-end 
-                              overflow-hidden"
-        >
-          <div className="relative w-full h-full flex justify-center lg:justify-end">
-            <img
-              src="asset/image/login.svg"
-              alt="Password recovery illustration"
-              className="w-[200px] sm:w-[250px] md:w-[300px] lg:w-[400px] xl:w-[543px] h-auto 
-                                     object-contain mt-8 lg:mt-[185px] lg:mr-[60px] xl:mr-[120px]
-                                     transition-all duration-300"
-            />
-            <div
-              className="absolute inset-0 mt-[100px] lg:mt-[203px] 
-                                      bg-gradient-to-b from-transparent to-white/53"
-            />
           </div>
         </div>
       </div>

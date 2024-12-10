@@ -1,14 +1,14 @@
-const jwt = require('jsonwebtoken');
-const { User } = require('../models'); // Pastikan untuk import User model
+//C:\Users\Fadhlan\Downloads\Vastra-main\backend\controller\userController.jsconst jwt = require("jsonwebtoken");
+const { User } = require("../models"); // Pastikan untuk import User model
 
 const getUsers = async (req, res) => {
-    try {
-      const response = await User.findAll();
-      res.status(200).json(response);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+  try {
+    const response = await User.findAll();
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
 
 const getUserById = async (req, res) => {
   try {
@@ -27,7 +27,7 @@ const getUserById = async (req, res) => {
     const token = jwt.sign(
       { user: { id: response.id, username: response.username } },
       process.env.JWT_SECRET,
-      { expiresIn: '1h' }
+      { expiresIn: "1h" }
     );
 
     // Kembalikan response dengan data user dan token
@@ -45,26 +45,64 @@ const getUserById = async (req, res) => {
   }
 };
 
-
 const createUser = async (req, res) => {
   try {
-    await User.create(req.body);
-    res.status(201).json({ msg: 'User Created' });
+    // Pastikan field required ada
+    if (!req.body.username || !req.body.email || !req.body.kata_sandi) {
+      return res.status(400).json({ message: "Data tidak lengkap" });
+    }
+
+    const user = await User.create({
+      username: req.body.username,
+      email: req.body.email,
+      kata_sandi: req.body.kata_sandi,
+      role: req.body.role || "user",
+      nama_lengkap: req.body.nama_lengkap,
+      profile_image: req.file ? `/uploads/${req.file.filename}` : null,
+    });
+
+    res.status(201).json({
+      message: "User berhasil dibuat",
+      user,
+    });
   } catch (error) {
-    console.log(error.message);
+    console.error(error);
+    res.status(500).json({
+      message: "Gagal membuat user",
+      error: error.message,
+    });
   }
 };
 
 const updateUser = async (req, res) => {
   try {
-    await User.update(req.body, {
-      where: {
-        id: req.params.id,
-      },
+    const { id } = req.params;
+    const updates = { ...req.body };
+
+    if (req.file) {
+      updates.profile_image = `/uploads/${req.file.filename}`;
+    }
+
+    // Password hanya diupdate jika ada
+    if (updates.kata_sandi === "") {
+      delete updates.kata_sandi;
+    }
+
+    await User.update(updates, {
+      where: { id },
     });
-    res.status(200).json({ msg: 'User Updated' });
+
+    const updatedUser = await User.findByPk(id);
+    res.status(200).json({
+      message: "User berhasil diupdate",
+      user: updatedUser,
+    });
   } catch (error) {
-    console.log(error.message);
+    console.error(error);
+    res.status(500).json({
+      message: "Gagal update user",
+      error: error.message,
+    });
   }
 };
 
@@ -75,7 +113,7 @@ const deleteUser = async (req, res) => {
         id: req.params.id,
       },
     });
-    res.status(200).json({ msg: 'User Deleted' });
+    res.status(200).json({ msg: "User Deleted" });
   } catch (error) {
     console.log(error.message);
   }

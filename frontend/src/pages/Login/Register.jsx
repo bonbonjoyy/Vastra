@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Icon } from "@iconify/react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import api, { setAuthToken } from "../../utils/api";
 
 export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
@@ -23,144 +24,174 @@ export default function Register() {
     }
   };
 
-  const onSubmit = (data) => {
-    console.log("Data yang di-submit:", data);
-    if (data.password !== data.confirmPassword) {
-      return;
+  const onSubmit = async (data) => {
+    try {
+      if (data.password !== data.confirmPassword) {
+        alert("Password tidak cocok!");
+        return;
+      }
+
+      const response = await api.post("/auth/register", {
+        username: data.username,
+        email: data.email,
+        password: data.password,
+      });
+
+      if (response.data.token) {
+        setAuthToken(response.data.token);
+        // Redirect ke halaman login setelah berhasil register
+        navigate("/login");
+        // Optional: Tambahkan alert atau notifikasi sukses
+        alert("Registrasi berhasil! Silahkan login.");
+      }
+    } catch (error) {
+      console.error("Register error:", error);
+      alert(error.response?.data?.message || "Gagal membuat akun");
     }
-    navigate("/login?source=register");
   };
 
   return (
-    <div className="flex justify-center min-h-screen bg-white">
-      <div className="w-full max-w-[1220px] mx-auto flex flex-col lg:flex-row">
-        {/* Form Section */}
-        <div
-          className="w-full order-2 lg:order-1 lg:w-1/2 flex flex-col items-center 
-                              mt-8 lg:mt-[357px] px-4 sm:px-6 lg:px-8"
-        >
-          <h1 className="font-helvetica text-[32px] lg:text-[48px] font-bold text-black mb-8 lg:mb-14 text-center">
-            REGISTRASI
-          </h1>
-
-          <div className="w-full max-w-[330px] sm:max-w-[360px] lg:max-w-[396px]">
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-              <input
-                type="text"
-                {...register("nama", { required: "Nama wajib diisi" })}
-                placeholder="Nama"
-                className="w-full h-9 px-4 font-helvetica text-[14px] text-black/50 border border-black/50"
-              />
-              {errors.nama && (
-                <p className="text-red-500 text-sm">{errors.nama.message}</p>
-              )}
-
-              <input
-                type="email"
-                {...register("email", { required: "Email wajib diisi" })}
-                placeholder="E-mail"
-                className="w-full h-9 px-4 font-helvetica text-[14px] text-black/50 border border-black/50"
-              />
-              {errors.email && (
-                <p className="text-red-500 text-sm">{errors.email.message}</p>
-              )}
-
-              <div className="relative">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  {...register("password", {
-                    required: "Kata Sandi wajib diisi",
-                  })}
-                  placeholder="Kata Sandi"
-                  className="w-full h-9 px-4 font-helvetica text-[14px] text-black/50 border border-black/50"
-                />
-                <button
-                  type="button"
-                  onClick={() => togglePasswordVisibility("password")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2"
-                >
-                  <Icon
-                    icon={showPassword ? "mdi:eye-off" : "mdi:eye"}
-                    width="24"
-                    height="24"
-                  />
-                </button>
-              </div>
-              {errors.password && (
-                <p className="text-red-500 text-sm">
-                  {errors.password.message}
-                </p>
-              )}
-
-              <div className="relative">
-                <input
-                  type={showConfirmPassword ? "text" : "password"}
-                  {...register("confirmPassword", {
-                    required: "Konfirmasi kata sandi wajib diisi",
-                    validate: (value) =>
-                      value === password || "Kata sandi tidak cocok",
-                  })}
-                  placeholder="Masukkan Ulang Kata Sandi"
-                  className="w-full h-9 px-4 font-helvetica text-[14px] text-black/50 border border-black/50"
-                />
-                <button
-                  type="button"
-                  onClick={() => togglePasswordVisibility("confirm")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2"
-                >
-                  <Icon
-                    icon={showConfirmPassword ? "mdi:eye-off" : "mdi:eye"}
-                    width="24"
-                    height="24"
-                  />
-                </button>
-              </div>
-              {errors.confirmPassword && (
-                <p className="text-red-500 text-sm">
-                  {errors.confirmPassword.message}
-                </p>
-              )}
-
-              <button
-                type="submit"
-                className="w-full py-2.5 bg-white text-black font-helvetica text-[12px] border border-black hover:bg-black hover:text-white transition-colors"
-              >
-                Buat Akun
-              </button>
-
-              <div className="flex justify-center items-center gap-1 mt-4">
-                <span className="text-[12px] font-helvetica text-[#868686]">
-                  Sudah punya akun?
-                </span>
-                <Link
-                  to="/login"
-                  className="text-[12px] font-helvetica text-[#1E1BCF]"
-                >
-                  Masuk
-                </Link>
-              </div>
-            </form>
-          </div>
+    <div className="flex justify-center min-h-screen bg-white mt-8 lg:mt-0">
+      <div className="max-w-[1220px] mx-auto flex flex-col lg:flex-row w-full">
+        {/* Bagian Gambar */}
+        <div className="flex-1 flex items-center justify-center sm:pr-2 md:pr-4 lg:pr-5 md:justify-end w-full mb-4 md:mb-0 md:order-2 relative lg:justify-end overflow-hidden">
+          <img
+            src="asset/image/login.svg"
+            alt="Login illustration"
+            className="w-[180px] sm:w-[180px] sm:mt-4 sm:h-auto
+                    md:w-1/2 md:h-auto
+                    lg:w-[68.5%] lg:mr-24 lg:h-auto lg:mt-0
+                    object-contain transition-all duration-300"
+          />
+          <div
+            className="absolute inset-0 mt-[100px] lg:mt-[203px] 
+                    bg-gradient-to-b from-transparent to-white/53"
+          />
         </div>
 
-        {/* Image Section */}
+        {/* Bagian Form atau Notifikasi */}
         <div
-          className="w-full order-1 lg:order-2 lg:w-1/2 relative flex justify-center lg:justify-end 
-                              overflow-hidden"
+          className="flex flex-col items-start gap-6 w-full px-4 
+                  sm:items-center sm:mt-4 sm:pl-4 
+                  md:w-[50%] md:px-8 md:order-1 
+                  lg:mt-[70px] lg:pl-[2px]"
         >
-          <div className="relative w-full h-full flex justify-center lg:justify-end">
-            <img
-              src="asset/image/login.svg"
-              alt="Register illustration"
-              className="w-[200px] sm:w-[250px] md:w-[300px] lg:w-[400px] xl:w-[543px] h-auto 
-                                     object-contain mt-8 lg:mt-[185px] lg:mr-[60px] xl:mr-[120px]
-                                     transition-all duration-300"
+          <h1
+            className="text-[32px] font-helvetica ml-[98px] font-bold text-black 
+                    sm:ml-[22px] text-center 
+                    md:text-[48px] 
+                    lg:ml-[120px]"
+          >
+            DAFTAR
+          </h1>
+
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col items-start gap-4 w-full 
+                    sm:pl-4 
+                    md:w-[396px] md:ml-[120px] 
+                    lg:w-[396px] lg:ml-[120px]"
+          >
+            {/* Input Email */}
+            <input
+              type="email"
+              {...register("email", { required: "Email wajib diisi" })}
+              placeholder="E-mail"
+              className="w-full h-9 px-4 font-helvetica text-[14px] text-black border border-black/50"
             />
-            <div
-              className="absolute inset-0 mt-[100px] lg:mt-[203px] 
-                                      bg-gradient-to-b from-transparent to-white/53"
+            {errors.email && (
+              <p className="text-red-500 text-sm">{errors.email.message}</p>
+            )}
+
+            {/* Input Username */}
+            <input
+              type="text"
+              {...register("username", { required: "Username wajib diisi" })}
+              placeholder="Username"
+              className="w-full h-9 px-4 font-helvetica text-[14px] text-black border border-black/50"
             />
-          </div>
+            {errors.username && (
+              <p className="text-red-500 text-sm">{errors.username.message}</p>
+            )}
+
+            {/* Input Password */}
+            <div className="relative w-full">
+              <input
+                type={showPassword ? "text" : "password"}
+                {...register("password", {
+                  required: "Kata Sandi wajib diisi",
+                })}
+                placeholder="Kata Sandi"
+                className="w-full h-9 px-4 font-helvetica text-[14px] text-black border border-black/50"
+              />
+              <button
+                type="button"
+                onClick={() => togglePasswordVisibility("password")}
+                className="absolute right-3 top-1/2 -translate-y-1/2"
+              >
+                <Icon
+                  icon={showPassword ? "mdi:eye-off" : "mdi:eye"}
+                  width="24"
+                  height="24"
+                />
+              </button>
+            </div>
+            {errors.password && (
+              <p className="text-red-500 text-sm">{errors.password.message}</p>
+            )}
+
+            {/* Input Confirm Password */}
+            <div className="relative w-full">
+              <input
+                type={showConfirmPassword ? "text" : "password"}
+                {...register("confirmPassword", {
+                  required: "Konfirmasi kata sandi wajib diisi",
+                  validate: (value) =>
+                    value === password || "Kata sandi tidak cocok",
+                })}
+                placeholder="Masukkan Ulang Kata Sandi"
+                className="w-full h-9 px-4 font-helvetica text-[14px] text-black border border-black/50"
+              />
+              <button
+                type="button"
+                onClick={() => togglePasswordVisibility("confirmPassword")}
+                className="absolute right-3 top-1/2 -translate-y-1/2"
+              >
+                <Icon
+                  icon={showConfirmPassword ? "mdi:eye-off" : "mdi:eye"}
+                  width="24"
+                  height="24"
+                />
+              </button>
+            </div>
+            {/* Menampilkan error jika ada */}
+            {errors.confirmPassword && (
+              <p className="text-red-500 text-sm">
+                {errors.confirmPassword.message}
+              </p>
+            )}
+
+            {/* Tombol Masuk */}
+            <button
+              type="submit"
+              className="w-full py-2.5 bg-white text-black font-helvetica text-[12px] border border-black hover:bg-black hover:text-white transition-colors"
+            >
+              Daftar
+            </button>
+
+            {/* Link Daftar */}
+            <div className="flex justify-center items-center gap-1 mt-2 mb-12 lg:mb-0">
+              <span className="text-[12px] font-helvetica text-[#868686]">
+                Sudah punya akun?
+              </span>
+              <Link
+                to="/login"
+                className="text-[12px] font-helvetica text-[#1E1BCF]"
+              >
+                Masuk
+              </Link>
+            </div>
+          </form>
         </div>
       </div>
     </div>

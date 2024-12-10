@@ -41,6 +41,9 @@ import PreppyCardigan from "./pages/Formal/PreppyCardigan";
 import SmartCasuall from "./pages/Formal/SmartCasuall";
 import Casuall from "./pages/Formal/Casuall";
 import Kreasi from "./pages/Kreasi/Index";
+import Admin from "./pages/Admin";
+import { PrivateRoute } from "./components";
+import ResetPassword from "./pages/Login/ResetPassword";
 
 const App = () => {
   const location = useLocation();
@@ -51,6 +54,7 @@ const App = () => {
       <Route path="/login" element={<Masuk />} />
       <Route path="/register" element={<Register />} />
       <Route path="/lupa-password" element={<Password />} />
+      <Route path="/reset-password/:token" element={<ResetPassword />} />
       <Route path="/Harian/" element={<Harian />} />
       <Route path="/UserProfile/" element={<UserProfile />} />
       <Route path="/Formal/" element={<Formal />} />
@@ -89,6 +93,14 @@ const App = () => {
       <Route path="/PreppyCardigan" element={<PreppyCardigan />} />
       <Route path="/SmartCasuall" element={<SmartCasuall />} />
       <Route path="/Casuall" element={<Casuall />} />
+      <Route
+        path="/admin/*"
+        element={
+          <PrivateRoute>
+            <Admin />
+          </PrivateRoute>
+        }
+      />
     </Routes>
   );
 };

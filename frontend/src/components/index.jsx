@@ -10,6 +10,9 @@ import { BannerProduk } from "./BannerProduk/BannerProduk";
 import { products, getProductById, getAllProducts } from "./ProdukData";
 import { CartProvider, useCart } from "./CartContext/CartContext";
 import PaymentCountdown from "./PaymentCountdown/PaymentCountdown";
+import UserManagement from "./Dataadmin/UserManagement";
+import PaymentManagement from "./Dataadmin/PaymentManagement";
+import PrivateRoute from "./PrivateRoute";
 
 export {
   Button,
@@ -27,4 +30,7 @@ export {
   CartProvider,
   useCart,
   PaymentCountdown,
+  UserManagement,
+  PaymentManagement,
+  PrivateRoute,
 };

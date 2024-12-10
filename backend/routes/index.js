@@ -1,13 +1,14 @@
-const express = require('express');
-const authRoutes = require('./auth');  // Mengimpor routes untuk login (auth)
-const userRoutes = require('./user');  // Mengimpor routes untuk CRUD user
+//C:\Users\Fadhlan\Downloads\Vastra-main\backend\routes\index.js
 
+const express = require("express");
+const authRoutes = require("./auth");
+const userRoutes = require("./user");
 const router = express.Router();
 
-// Menambahkan route untuk login (auth) dengan prefix '/auth'
-router.use('/auth', authRoutes);  // Prefix '/auth' untuk login
+// Route untuk auth (login & register)
+router.use("/auth", authRoutes);
 
-// Menambahkan route untuk user dengan prefix '/users'
-router.use('/api/users', userRoutes); // Prefix '/users' untuk CRUD user
+// Route untuk CRUD user
+router.use("/api/users", userRoutes);
 
 module.exports = router;

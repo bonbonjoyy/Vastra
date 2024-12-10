@@ -1,20 +1,32 @@
-'use strict';
+//C:\Users\Fadhlan\Downloads\Vastra-main\backend\seeders\20241128042405-demo-user.cjs
 
-/** @type {import('sequelize-cli').Migration} */
+"use strict";
+
 module.exports = {
-  async up (queryInterface, Sequelize) {
-    return queryInterface.bulkInsert('Users', [
+  async up(queryInterface, Sequelize) {
+    return queryInterface.bulkInsert("Users", [
       {
-        username: 'Frankenstein',
-        email: 'frank@gmail.com',
-        kata_sandi: 'frankenss123',
+        username: "admin",
+        email: "admin@gmail.com",
+        kata_sandi: "admin123",
+        role: "admin",
+        last_login: null,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        username: "user",
+        email: "user@gmail.com",
+        kata_sandi: "user123",
+        role: "user",
+        last_login: null,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
     ]);
   },
 
-  async down (queryInterface, Sequelize) {
-    return queryInterface.bulkDelete('Users', null, {});
-  }
+  async down(queryInterface, Sequelize) {
+    return queryInterface.bulkDelete("Users", null, {});
+  },
 };
