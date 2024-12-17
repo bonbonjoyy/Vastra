@@ -84,6 +84,7 @@ const getProductsByCategory = async (req, res) => {
   const { category } = req.params;
 
   try {
+    category = category.charAt(0).toUpperCase() + category.slice(1).toLowerCase();
     console.log("Fetching products for category:", category); // Log the category for debugging
     const products = await Product.findAll({
       where: { kategori: category },  // Ensure the 'kategori' field matches the database column
