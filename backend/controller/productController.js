@@ -81,7 +81,7 @@ const deleteProduct = async (req, res) => {
   }
 };
 const getProductsByCategory = async (req, res) => {
-  const { category } = req.params;
+  let { category } = req.params;
 
   try {
     category = category.charAt(0).toUpperCase() + category.slice(1).toLowerCase();
