@@ -1,3 +1,4 @@
+//frontend/src/components/CategoryFilter/CategoryFilter.jsx
 import React, { useState } from "react";
 
 const CategoryFilter = ({ categories, activeCategory, onCategoryChange }) => {
@@ -24,25 +25,30 @@ const CategoryFilter = ({ categories, activeCategory, onCategoryChange }) => {
   };
 
   return (
-    <div className="border p-4 rounded-lg bg-gray-100 w-full sm:w-max mx-auto sm:mx-0">
-      <div className="text-xl font-bold text-black mb-4">Filter</div>
-      <div className="mb-4">
+    <div className="border border-black ml-6 w-[200px] p-0">
+      <div className="text-4xl font-bold text-black text-left px-6 py-2">
+        Filter
+      </div>
+      <hr className="border-black" />
+
+      <div>
         <button
           onClick={() => handleCategoryClick("Semua")}
           className={`${
-            activeCategory === "Semua" ? "" : "text-black"
-          } block text-lg`}
+            activeCategory === "Semua"
+          } block w-full text-left text-lg px-6 py-2 hover:bg-black hover:text-white`}
         >
           Semua
         </button>
-        <hr className="my-0 border-t border-gray-300" />
+        <hr className="border-black" />
       </div>
-      <div className="mb-4">
+
+      <div>
         <button
           onClick={() => handleCategoryClick("Warna Kulit")}
           className={`${
             activeCategory === "Warna Kulit" ? "text-blue-600" : "text-black"
-          } block text-lg`}
+          } block w-full text-left text-lg px-6 py-2 hover:bg-black hover:text-white`}
         >
           Warna Kulit
         </button>
@@ -50,64 +56,34 @@ const CategoryFilter = ({ categories, activeCategory, onCategoryChange }) => {
         {isDropdownOpen.skinColor && (
           <div className="pl-4 mt-2">
             <button
-              onClick={() => {
-                onCategoryChange("Warna Kulit Terang");
-                setIsDropdownOpen((prevState) => ({
-                  ...prevState,
-                  skinColor: false,
-                }));
-              }}
-              className={`${
-                activeCategory === "Warna Kulit Terang"
-                  ? "bg-white text-black"
-                  : "text-black"
-              } block w-full px-4 py-2 text-sm text-left hover:bg-gray-200 rounded-md focus:outline-none`}
+              onClick={() => onCategoryChange("Warna Kulit Terang")}
+              className="block w-full text-sm py-1 px-2 text-left hover:text-gray-600"
             >
               Terang
             </button>
             <button
-              onClick={() => {
-                onCategoryChange("Warna Kulit Sawo Matang");
-                setIsDropdownOpen((prevState) => ({
-                  ...prevState,
-                  skinColor: false,
-                }));
-              }}
-              className={`${
-                activeCategory === "Warna Kulit Sawo Matang"
-                  ? "bg-white text-black"
-                  : "text-black"
-              } block w-full px-4 py-2 text-sm text-left hover:bg-gray-200 rounded-md focus:outline-none`}
+              onClick={() => onCategoryChange("Warna Kulit Sawo Matang")}
+              className="block w-full text-sm py-1 px-2 text-left hover:text-gray-600"
             >
               Sawo Matang
             </button>
             <button
-              onClick={() => {
-                onCategoryChange("Warna Kulit Gelap");
-                setIsDropdownOpen((prevState) => ({
-                  ...prevState,
-                  skinColor: false,
-                }));
-              }}
-              className={`${
-                activeCategory === "Warna Kulit Gelap"
-                  ? "bg-white text-black"
-                  : "text-black"
-              } block w-full px-4 py-2 text-sm text-left hover:bg-gray-200 rounded-md focus:outline-none`}
+              onClick={() => onCategoryChange("Warna Kulit Gelap")}
+              className="block w-full text-sm py-1 px-2 text-left hover:text-gray-600"
             >
               Gelap
             </button>
           </div>
         )}
-
-        <hr className="my-0 border-t border-gray-300" />
+        <hr className="border-black" />
       </div>
-      <div className="mb-4">
+
+      <div>
         <button
           onClick={() => handleCategoryClick("Bentuk Badan")}
           className={`${
             activeCategory === "Bentuk Badan" ? "text-blue-600" : "text-black"
-          } block text-lg`}
+          } block w-full text-left text-lg px-6 py-2 hover:bg-black hover:text-white`}
         >
           Bentuk Badan
         </button>
@@ -115,57 +91,26 @@ const CategoryFilter = ({ categories, activeCategory, onCategoryChange }) => {
         {isDropdownOpen.bodyShape && (
           <div className="pl-4 mt-2">
             <button
-              onClick={() => {
-                onCategoryChange("Bentuk Badan Kurus");
-                setIsDropdownOpen((prevState) => ({
-                  ...prevState,
-                  bodyShape: false,
-                }));
-              }}
-              className={`${
-                activeCategory === "Bentuk Badan Kurus"
-                  ? "bg-white text-black"
-                  : "text-black"
-              } block w-full px-4 py-2 text-sm text-left hover:bg-gray-200 rounded-md focus:outline-none`}
+              onClick={() => onCategoryChange("Bentuk Badan Kurus")}
+              className="block w-full text-sm py-1 px-2 text-left hover:text-gray-600"
             >
               Kurus
             </button>
             <button
-              onClick={() => {
-                onCategoryChange("Bentuk Badan Sedang");
-                setIsDropdownOpen((prevState) => ({
-                  ...prevState,
-                  bodyShape: false,
-                }));
-              }}
-              className={`${
-                activeCategory === "Bentuk Badan Sedang"
-                  ? "bg-white text-black"
-                  : "text-black"
-              } block w-full px-4 py-2 text-sm text-left hover:bg-gray-200 rounded-md focus:outline-none`}
+              onClick={() => onCategoryChange("Bentuk Badan Sedang")}
+              className="block w-full text-sm py-1 px-2 text-left hover:text-gray-600"
             >
               Sedang
             </button>
             <button
-              onClick={() => {
-                onCategoryChange("Bentuk Badan Gemuk");
-                setIsDropdownOpen((prevState) => ({
-                  ...prevState,
-                  bodyShape: false,
-                }));
-              }}
-              className={`${
-                activeCategory === "Bentuk Badan Gemuk"
-                  ? "bg-white text-black"
-                  : "text-black"
-              } block w-full px-4 py-2 text-sm text-left hover:bg-gray-200 rounded-md focus:outline-none`}
+              onClick={() => onCategoryChange("Bentuk Badan Gemuk")}
+              className="block w-full text-sm py-1 px-2 text-left hover:text-gray-600"
             >
               Gemuk
             </button>
           </div>
         )}
-
-        <hr className="my-0 border-t border-gray-300" />
+        <hr className="border-black" />
       </div>
     </div>
   );

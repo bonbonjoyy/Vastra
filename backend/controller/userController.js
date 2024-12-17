@@ -1,4 +1,4 @@
-//C:\Users\Fadhlan\Downloads\Vastra-main\backend\controller\userController.jsconst jwt = require("jsonwebtoken");
+
 const { User } = require("../models"); // Pastikan untuk import User model
 
 const getUsers = async (req, res) => {
@@ -27,7 +27,7 @@ const getUserById = async (req, res) => {
     const token = jwt.sign(
       { user: { id: response.id, username: response.username } },
       process.env.JWT_SECRET,
-      { expiresIn: "1h" }
+      { expiresIn: "7d" }
     );
 
     // Kembalikan response dengan data user dan token

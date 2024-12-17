@@ -43,13 +43,13 @@ const Selesai = () => {
                   as="h1"
                   className="text-[36px] font-bold mb-6 text-black"
                 >
-                  Pembayaran Berhasil!
+                  Pesanan Berhasil di Buat!
                 </Heading>
 
                 <Text className="text-[18px] mb-0 text-black">
                   Terima kasih telah berbelanja di Vastra.
                   <br />
-                  Pesanan Anda akan segera diproses.
+                  Silahkan lanjutkan pembayaran di Pesanan Saya.
                 </Text>
               </div>
 
@@ -57,11 +57,11 @@ const Selesai = () => {
               <div className="space-y-4 flex flex-col items-center w-full max-w-md mx-auto">
                 <div
                   className="w-full"
-                  onClick={() => navigate("/Produk-Kami/Kaos")}
+                  onClick={() => navigate("/Order")}
                 >
                   <div className="bg-black p-2 mb-2 cursor-pointer">
                     <Text className="text-[16px] font-bold text-white text-center block">
-                      Pesan Lagi
+                      Bayar
                     </Text>
                   </div>
                 </div>

@@ -1,5 +1,4 @@
-//C:\Users\Fadhlan\Downloads\Vastra-main\frontend\src\pages\UserProfile\index.jsx
-
+//frontend/src/pages/UserProfile/index.jsx
 import React, { useState, useEffect } from "react";
 import { Button, Img, Text, Heading } from "../../components";
 import Header from "../../components/Header/Header";
@@ -188,6 +187,7 @@ export default function UserProfile() {
                 <Text className="text-lg font-bold">Beranda</Text>
               </div>
               <div
+                onClick={() => navigate("/UserProfile")}
                 className={`p-6 border-b border-black cursor-pointer transition-colors ${
                   activeMenu === "profile"
                     ? "bg-black text-white"
@@ -195,6 +195,16 @@ export default function UserProfile() {
                 }`}
               >
                 <Text className="text-lg font-bold">Pengaturan Profil</Text>
+              </div>
+              <div
+                onClick={() => navigate("/Order")}
+                className={`p-6 border-b border-black cursor-pointer transition-colors ${
+                  activeMenu === "order"
+                    ? "bg-black text-white"
+                    : "hover:bg-gray-100"
+                }`}
+              >
+                <Text className="text-lg font-bold">Pesanan Saya</Text>
               </div>
               <div
                 onClick={() => {

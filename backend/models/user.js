@@ -1,12 +1,13 @@
-//C:\Users\Fadhlan\Downloads\Vastra-main\backend\models\user.js
-
 "use strict";
 const { Model } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
-      // define association here
+      User.hasMany(models.Order, {
+        foreignKey: "user_id",
+        as: "orders",
+      });
     }
   }
   User.init(

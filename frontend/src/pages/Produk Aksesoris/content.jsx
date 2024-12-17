@@ -1,9 +1,10 @@
-import React, { Suspense } from "react";
+//frontend/src/pages/Produk Aksesoris/conten.jsx
+import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Heading, Img, BannerProduk, getAllProducts } from "../../components";
+import { Heading, Img, BannerProduk } from "../../components";
+import { getAllProducts, getProductById } from "../../api/product";
 
 const ProductCard = ({ image, title, price, onClick, category }) => {
-  // Function untuk menentukan posisi gambar berdasarkan jenis produk
   const getImagePosition = () => {
     const titleLower = title.toLowerCase();
     if (category === "aksesoris") {
@@ -45,27 +46,40 @@ export default function Content() {
   const navigate = useNavigate();
   const location = useLocation();
   const category = location.pathname.split("/").pop().toLowerCase();
-  const products = getAllProducts(category);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const handleProductClick = (productId) => {
-    navigate(`/Produk-Kami/${category}/${productId}`);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const data = await getAllProducts(category);
+      setProducts(data);
+      setLoading(false);
+    };
+    fetchProducts();
+  }, [category]);
+
+  const handleProductClick = (id) => {
+    navigate(`/Produk-Kami/${category}/${id}`);
   };
+
+  if (loading) return <div>Loading...</div>;
 
   return (
     <div className="px-4 sm:px-8 md:px-16 lg:px-[120px]">
       <div className="mt-12 md:mt-[100px] lg:mt-[125px]">
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 pt-20 sm:pt-2 md:pt-0 lg:pt-0 gap-x-5 sm:gap-x-5 md:gap-x-8 lg:gap-x-10 gap-y-6 sm:gap-y-6 md:gap-y-10 lg:gap-y-[75px]">
-          <Suspense fallback={<div>Loading products...</div>}>
-            {products.map((product) => (
-              <div key={product.id}>
-                <ProductCard
-                  {...product}
+          {products.map((product) => (
+            <div key={product.id}>
+              <ProductCard
+                  image={product.image ? `http://localhost:3333${product.image}` : "/default-placeholder.png"} 
+                  title={product.nama_product}
+                  price={`Rp ${new Intl.NumberFormat('id-ID').format(product.harga)}`}
                   category={category}
                   onClick={() => handleProductClick(product.id)}
                 />
-              </div>
-            ))}
-          </Suspense>
+            </div>
+          ))}
         </div>
         <BannerProduk />
       </div>

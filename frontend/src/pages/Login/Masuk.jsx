@@ -35,7 +35,7 @@ export default function Masuk() {
         if (response.data.user.role === "admin") {
           navigate("/admin");
         } else {
-          navigate("/?source=login");
+          navigate("/home");
         }
       }
     } catch (error) {

@@ -1,3 +1,4 @@
+//frontend/src/components/ProdukData/index.jsx
 export const products = {
   jaket: [
     {

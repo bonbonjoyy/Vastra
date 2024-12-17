@@ -4,6 +4,8 @@ import Masuk from "./pages/Login/Masuk";
 import Register from "./pages/Login/Register";
 import Password from "./pages/Login/Password";
 import UserProfile from "./pages/UserProfile";
+import Order from "./pages/Order";
+import OrderDetail from "./pages/Order/OrderDetail";
 import Harian from "./pages/Harian";
 import Formal from "./pages/Formal";
 import Khusus from "./pages/Khusus";
@@ -50,13 +52,16 @@ const App = () => {
 
   return (
     <Routes location={location}>
-      <Route path="/" element={<Home />} />
+      <Route path="/" element={<Masuk />} />
       <Route path="/login" element={<Masuk />} />
+      <Route path="/home" element={<Home />} />
       <Route path="/register" element={<Register />} />
       <Route path="/lupa-password" element={<Password />} />
       <Route path="/reset-password/:token" element={<ResetPassword />} />
       <Route path="/Harian/" element={<Harian />} />
       <Route path="/UserProfile/" element={<UserProfile />} />
+      <Route path="/Order/" element={<Order />} />
+      <Route path="/Order/Detail/:orderId" element={<OrderDetail />} />
       <Route path="/Formal/" element={<Formal />} />
       <Route path="/Khusus/" element={<Khusus />} />
       <Route path="/Tips-Bahan" element={<TipsBahan />} />

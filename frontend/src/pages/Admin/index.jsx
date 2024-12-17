@@ -1,11 +1,11 @@
-// Admin/index.jsx
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserManagement, PaymentManagement } from "../../components";
+import { UserManagement, PaymentManagement, ProductManagement, KreasiManagement, TipsManagement, GaleriManagement, OrderManagement } from "../../components";
 
 const Admin = () => {
   const [activeTab, setActiveTab] = useState("users");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSettingOpen, setIsSettingOpen] = useState(false); // State for toggling the dropdown
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,12 +22,26 @@ const Admin = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
+  const toggleSettingDropdown = () => {
+    setIsSettingOpen(!isSettingOpen);
+  };
+
   const renderContent = () => {
     switch (activeTab) {
       case "users":
         return <UserManagement />;
       case "payment":
         return <PaymentManagement />;
+      case "products":
+        return <ProductManagement />;
+      case "kreasis":
+        return <KreasiManagement />;
+      case "tips":
+        return <TipsManagement />;
+      case "galeri":
+        return <GaleriManagement />;
+      case "order":
+        return <OrderManagement />;
       default:
         return <UserManagement />;
     }
@@ -38,126 +52,68 @@ const Admin = () => {
       {/* Sidebar Desktop */}
       <div className="hidden lg:block w-64 bg-gray-800 text-white h-full">
         <div className="mb-8 p-4">
-          <img
-            src="/asset/image/logo.svg"
-            alt="Logo"
-            className="w-32 mx-auto"
-          />
+          <img src="/asset/image/logo.svg" alt="Logo" className="w-32 mx-auto" />
         </div>
         <nav className="space-y-2 px-4">
-          <button
-            onClick={() => {
-              setActiveTab("users");
-              setIsSidebarOpen(false);
-            }}
-            className={`w-full text-left block py-2 px-4 rounded ${
-              activeTab === "users" ? "bg-gray-700" : "hover:bg-gray-700"
-            }`}
-          >
-            Manajemen Akun
+          <button onClick={() => setActiveTab("users")} className={`w-full text-left flex items-center py-2 px-4 rounded ${activeTab === "users" ? "bg-gray-700" : "hover:bg-gray-700"}`}>
+            👤 Manajemen Akun
           </button>
-          <button
-            onClick={() => {
-              setActiveTab("payment");
-              setIsSidebarOpen(false);
-            }}
-            className={`w-full text-left block py-2 px-4 rounded ${
-              activeTab === "payment" ? "bg-gray-700" : "hover:bg-gray-700"
-            }`}
-          >
-            Metode Pembayaran
+          {/* <button onClick={() => setActiveTab("payment")} className={`w-full text-left flex items-center py-2 px-4 rounded ${activeTab === "payment" ? "bg-gray-700" : "hover:bg-gray-700"}`}>
+            💳 Metode Pembayaran
+          </button> */}
+          <button onClick={() => setActiveTab("products")} className={`w-full text-left flex items-center py-2 px-4 rounded ${activeTab === "products" ? "bg-gray-700" : "hover:bg-gray-700"}`}>
+            🛒 Products
           </button>
-          <button
-            onClick={handleLogout}
-            className="w-full text-left block py-2 px-4 text-red-400 hover:bg-gray-700 rounded"
-          >
-            Keluar
+
+          {/* Dropdown Menu */}
+          <button onClick={toggleSettingDropdown} className="w-full text-left flex items-center justify-between py-2 px-4 rounded hover:bg-gray-700">
+            ⚙ Setting
+            {/* <span>{isSettingOpen ? ▲ : ▼}</span> */}
+          </button>
+          {isSettingOpen && (
+            <div className="ml-4 space-y-2">
+              <button onClick={() => setActiveTab("kreasis")} className={`w-full text-left flex items-center py-2 px-4 rounded ${activeTab === "kreasis" ? "bg-gray-700" : "hover:bg-gray-700"}`}>
+                🎨 Kreasi
+              </button>
+              <button onClick={() => setActiveTab("tips")} className={`w-full text-left flex items-center py-2 px-4 rounded ${activeTab === "tips" ? "bg-gray-700" : "hover:bg-gray-700"}`}>
+                📖 Tips
+              </button>
+              <button onClick={() => setActiveTab("galeri")} className={`w-full text-left flex items-center py-2 px-4 rounded ${activeTab === "galeri" ? "bg-gray-700" : "hover:bg-gray-700"}`}>
+                🖼 Galeri
+              </button>
+            </div>
+          )}
+
+          <button onClick={() => setActiveTab("order")} className={`w-full text-left flex items-center py-2 px-4 rounded ${activeTab === "order" ? "bg-gray-700" : "hover:bg-gray-700"}`}>
+            📦 Order
+          </button>
+          <button onClick={handleLogout} className="w-full text-left flex items-center py-2 px-4 text-red-400 hover:bg-gray-700 rounded">
+            🚪 Keluar
           </button>
         </nav>
       </div>
 
-      {/* Main Content */}
       <div className="flex-1 overflow-hidden">
-        {/* Header with Mobile Menu */}
         <div className="sticky top-0 bg-white z-20 shadow-sm">
           <div className="flex justify-end items-center p-4">
-            {/* Mobile Menu Button - Right aligned */}
-            <button
-              className="lg:hidden p-2 hover:bg-gray-100 rounded"
-              onClick={toggleSidebar}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
+            <button className="lg:hidden p-2 hover:bg-gray-100 rounded" onClick={toggleSidebar}>
+              ☰
             </button>
           </div>
         </div>
 
-        {/* Mobile Sidebar */}
-        <div
-          className={`lg:hidden fixed inset-y-0 left-0 w-64 bg-gray-800 text-white transform ${
-            isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-          } transition-transform duration-300 ease-in-out z-30`}
-        >
-          <div className="p-4">
-            <div className="flex justify-center mb-8">
-              {" "}
-              {/* Center logo */}
-              <img src="/asset/image/logo.svg" alt="Logo" className="w-32" />
-            </div>
-            <nav className="space-y-2">
-              <button
-                onClick={() => {
-                  setActiveTab("users");
-                  setIsSidebarOpen(false);
-                }}
-                className={`w-full text-left block py-2 px-4 rounded ${
-                  activeTab === "users" ? "bg-gray-700" : "hover:bg-gray-700"
-                }`}
-              >
-                Manajemen Akun
-              </button>
-              <button
-                onClick={() => {
-                  setActiveTab("payment");
-                  setIsSidebarOpen(false);
-                }}
-                className={`w-full text-left block py-2 px-4 rounded ${
-                  activeTab === "payment" ? "bg-gray-700" : "hover:bg-gray-700"
-                }`}
-              >
-                Metode Pembayaran
-              </button>
-              <button
-                onClick={handleLogout}
-                className="w-full text-left block py-2 px-4 text-red-400 hover:bg-gray-700 rounded"
-              >
+        {isSidebarOpen && (
+          <div className="lg:hidden fixed inset-y-0 left-0 w-64 bg-gray-800 text-white z-30">
+            <nav className="space-y-2 p-4">
+              <button onClick={handleLogout} className="w-full text-left block py-2 px-4 text-red-400 hover:bg-gray-700 rounded">
                 Keluar
               </button>
             </nav>
           </div>
-        </div>
-
-        {/* Overlay for mobile */}
-        {isSidebarOpen && (
-          <div
-            className="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-20"
-            onClick={() => setIsSidebarOpen(false)}
-          />
         )}
 
-        {/* Content Area */}
+        {isSidebarOpen && <div className="lg:hidden fixed inset-0 bg-black bg-opacity-50" onClick={toggleSidebar} />}
+
         <div className="overflow-auto h-[calc(100vh-64px)]">
           {renderContent()}
         </div>

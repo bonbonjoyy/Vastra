@@ -40,7 +40,6 @@ function ProductCard({ image, text, link }) {
             {text}
           </button>
         )}
-        <img src="/asset/image/bookmark.svg" alt="Bookmark" className="h-5 pr-2" />
       </div>
     </div>
   );

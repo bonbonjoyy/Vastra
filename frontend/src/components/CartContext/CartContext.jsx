@@ -1,5 +1,5 @@
-// components/CartContext/CartContext.jsx
 import React, { createContext, useContext, useState, useEffect } from "react";
+import api from "../../utils/api"; // pastikan ini merujuk ke utils/api.js Anda
 
 const CartContext = createContext();
 
@@ -74,6 +74,34 @@ export const CartProvider = ({ children }) => {
     return cartItems.reduce((total, item) => total + item.quantity, 0);
   };
 
+  // Fungsi untuk checkout
+  const checkout = async (userId, shippingDetails) => {
+    try {
+      const token = localStorage.getItem("token");
+      const orderData = {
+        user_id: userId,
+        items: cartItems,
+        shipping_details: shippingDetails,
+        total: getCartTotal(),
+      };
+
+      // Kirim data pesanan ke backend untuk diproses
+      const response = await api.post("/api/checkout", orderData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.status === 200) {
+        clearCart(); // Clear the cart setelah checkout sukses
+        alert("Checkout berhasil!");
+      }
+    } catch (error) {
+      console.error("Checkout error:", error);
+      alert("Terjadi kesalahan saat melakukan checkout.");
+    }
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -84,6 +112,7 @@ export const CartProvider = ({ children }) => {
         clearCart,
         getCartTotal,
         getCartItemsCount,
+        checkout, // Menambahkan fungsi checkout ke context
       }}
     >
       {children}

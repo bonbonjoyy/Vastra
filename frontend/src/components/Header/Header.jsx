@@ -244,7 +244,7 @@ export default function Header({ ...props }) {
 
         {/* Move Logo next to Burger Menu for Small Screens */}
         <div className="sm:hidden flex items-center ml-2">
-          <Link to="/">
+          <Link to="/home">
             <img
               src="/asset/image/logo-new.svg"
               alt="Logo"
@@ -255,7 +255,7 @@ export default function Header({ ...props }) {
 
         {/* Logo for Larger Screens */}
         <div className="hidden sm:flex items-center justify-center ml-28">
-          <Link to="/">
+          <Link to="/home">
             <img
               src="/asset/image/logo-new.svg"
               alt="Logo"
@@ -374,6 +374,14 @@ export default function Header({ ...props }) {
                 </li>
                 <li>
                   <Link
+                    to="/Order"
+                    className="block px-3 sm:px-4 py-2 text-xs sm:text-sm text-gray-700 hover:bg-black hover:text-white"
+                  >
+                    Pesanan Saya
+                  </Link>
+                </li>
+                <li>
+                  <Link
                     to="/login"
                     className="block px-3 sm:px-4 py-2 text-xs sm:text-sm text-gray-700 hover:bg-black hover:text-white"
                   >
@@ -468,7 +476,11 @@ export default function Header({ ...props }) {
                                         lg:w-[127px] lg:h-[147px]"
                         >
                           <img
-                            src={item.image}
+                             src={
+                              item.image
+                                ? `http://localhost:3333${item.image}`
+                                : "/asset/image/productplaceholder.svg"
+                            }
                             alt={item.title}
                             className={`w-full h-full ${
                               item.category === "aksesoris"

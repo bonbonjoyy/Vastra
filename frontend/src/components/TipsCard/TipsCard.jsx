@@ -21,7 +21,7 @@ export function TipsCard({
                     {/* Padding dalam konten */}
                     <Heading 
                         size="subhead2" 
-                        as="h2" 
+                        as="h3" 
                         className="text-[34px] font-bold text-blk sm:text-[28px]"
                     >
                         {materialTitle}

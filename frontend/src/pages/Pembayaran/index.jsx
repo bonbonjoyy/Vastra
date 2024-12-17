@@ -5,9 +5,7 @@ import Footer from "../../components/Footer/Footer";
 import { useNavigate } from "react-router-dom";
 
 export default function Pembayaran() {
-  const { removeFromCart } = useCart();
-
-  const { cartItems } = useCart();
+  const { removeFromCart, cartItems } = useCart();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -18,7 +16,6 @@ export default function Pembayaran() {
     kecamatan: "",
     phone: "",
   });
-
   const [errors, setErrors] = useState({});
   const [showValidation, setShowValidation] = useState(false);
 
@@ -42,7 +39,6 @@ export default function Pembayaran() {
 
   const validateField = (name, value) => {
     let newErrors = { ...errors };
-
     if (!value.trim()) {
       newErrors[name] = "Bagian ini wajib diisi";
     } else {
@@ -54,7 +50,6 @@ export default function Pembayaran() {
         delete newErrors[name];
       }
     }
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -70,22 +65,45 @@ export default function Pembayaran() {
         newErrors[key] = "Nomor telepon tidak valid (10-13 digit)";
       }
     });
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handlePaymentMethodClick = (e, path) => {
-    e.preventDefault();
+  const handleCheckout = async (paymentMethod) => {
     setShowValidation(true);
-
     if (validateAllFields()) {
-      navigate(path);
-    } else {
-      // Scroll to first error
-      const firstErrorField = document.querySelector(".border-red-500");
-      if (firstErrorField) {
-        firstErrorField.scrollIntoView({ behavior: "smooth", block: "center" });
+      try {
+        const token = localStorage.getItem("token"); // Ambil token dari localStorage
+        if (!token) {
+          alert("Anda harus login untuk melanjutkan.");
+          navigate("/login");
+          return;
+        }
+
+        const response = await fetch("http://localhost:3333/api/checkout", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            shipping_details: formData,
+            items: cartItems,
+            total: calculateTotal(),
+            paymentMethod,
+          }),
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+          alert("Pesanan berhasil dibuat!");
+          navigate("/Selesai");
+        } else {
+          alert(data.message || "Terjadi kesalahan saat checkout.");
+        }
+      } catch (error) {
+        console.error("Checkout error:", error);
+        alert("Gagal menghubungi server. Coba lagi nanti.");
       }
     }
   };
@@ -101,7 +119,6 @@ export default function Pembayaran() {
 
           <div className="flex gap-[40px] flex-col-reverse sm:flex-col md:flex-col lg:flex-row">
 
-            
             {/* Left Section - Forms */}
             <div className="flex-1">
               <form>
@@ -120,9 +137,7 @@ export default function Pembayaran() {
                       placeholder="Email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      className={`w-full ${
-                        errors.email ? "border-red-500" : ""
-                      }`}
+                      className={`w-full ${errors.email ? "border-red-500" : ""}`}
                     />
                     {errors.email && (
                       <Text className="text-red-500 text-sm mt-1">
@@ -138,7 +153,6 @@ export default function Pembayaran() {
                     Tujuan Pengiriman
                   </Heading>
                   <div className="space-y-4">
-                    {/* ... other input fields similar to email with validation ... */}
                     {Object.keys(formData).map((key) => {
                       if (key === "email") return null;
                       return (
@@ -170,66 +184,25 @@ export default function Pembayaran() {
 
                 {/* Payment Methods */}
                 <div className="border-l border-r border-b border-black p-6">
-                  <Heading
+                  {/* <Heading
                     as="h2"
                     className="text-[18px] font-bold text-black mb-3"
                   >
                     Metode Pembayaran
-                  </Heading>
-                  <div className="mb-6 text-gray-500 text-md">
+                  </Heading> */}
+                  {/* <div className="mb-6 text-gray-500 text-md">
                     <p>Silahkan pilih metode pembayaran</p>
-                  </div>
+                  </div> */}
 
                   <div className="space-y-4">
-                    <div
-                      onClick={(e) =>
-                        handlePaymentMethodClick(e, "/detail-ewallet")
-                      }
-                      className="border border-black p-4 hover:bg-gray-50 transition-colors cursor-pointer"
-                    >
-                      <div className="flex items-center justify-between">
-                        <Text className="text-[15px] font-medium">
-                          E-Wallet
-                        </Text>
-                        <div className="flex gap-3">
-                          <Img
-                            src="/asset/image/dana.svg"
-                            className="h-[34px]"
-                          />
-                          <Img
-                            src="/asset/image/gopay.svg"
-                            className="h-[34px]"
-                          />
-                          <Img
-                            src="/asset/image/spay.svg"
-                            className="h-[34px]"
-                          />
-                        </div>
-                      </div>
-                    </div>
-
-                    <div
-                      onClick={(e) =>
-                        handlePaymentMethodClick(e, "/Detail-Bank")
-                      }
-                      className="border border-black p-4 hover:bg-gray-50 transition-colors cursor-pointer"
-                    >
-                      <div className="flex items-center justify-between">
-                        <Text className="text-[15px] font-medium">
-                          Transfer Bank
-                        </Text>
-                        <div className="flex gap-4">
-                          <Img
-                            src="/asset/image/mandiri.svg"
-                            className="h-[34px]"
-                          />
-                          <Img
-                            src="/asset/image/bca.svg"
-                            className="h-[34px]"
-                          />
-                        </div>
-                      </div>
-                    </div>
+                  <div
+                    onClick={() => handleCheckout("Bayar")}
+                    className="border border-black p-4 bg-black text-white hover:bg-gray-700 transition-colors cursor-pointer flex items-center justify-center"
+                  >
+                    <Text className="text-[15px] font-medium">
+                      Buat Pesanan
+                    </Text>
+                  </div>
                   </div>
                 </div>
               </form>
@@ -253,12 +226,13 @@ export default function Pembayaran() {
                       className="border-b border-black"
                     >
                       <div className="flex">
-                        <div className="w-[127px] h-[147px] border-r border-black
-                                        sm:w-[127px] sm:w-[147px]
-                                        sm:w-[127px] sm:w-[127px]
-                                        sm:w-[127px] sm:w-[127px]">
+                        <div className="w-[127px] h-[147px] border-r border-black">
                           <img
-                            src={item.image}
+                             src={
+                              item.image
+                                ? `http://localhost:3333${item.image}`
+                                : "/asset/image/productplaceholder.svg"
+                            }
                             alt={item.title}
                             className={`w-full h-full ${
                               item.category === "aksesoris"
@@ -270,41 +244,32 @@ export default function Pembayaran() {
                         <div className="flex-1 px-8 py-2">
                           <div className="flex justify-between">
                             <div>
-                              <h3 className="text-xl font-bold">
-                                {item.title}
-                              </h3>
+                              <h3 className="text-xl font-bold">{item.title}</h3>
                               {item.category !== "aksesoris" && (
-                                <p className="text-sm mt-1">
-                                  Ukuran: {item.size}
-                                </p>
+                                <p className="text-sm mt-1">Ukuran: {item.size}</p>
                               )}
                               <p className="text-lg font-bold text-gray-600">
                                 Rp {item.price.toLocaleString()}
                               </p>
-                              <p className="text-sm mt-1">
-                                Jumlah: {item.quantity}
-                              </p>
+                              <p className="text-sm mt-1">Jumlah: {item.quantity}</p>
                             </div>
-                              <button
-                                onClick={() => removeFromCart(item.id, item.size)}
-                                className="w-8 h-8 mt-7 mr-4 rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors font-extrabold
-                                          sm:w-8 sm:h-8 sm:mt-7 sm:mr-2
-                                          md:w-9 md:h-9 md:mt-7 md:mr-2 
-                                          lg:w-9 lg:h-9 lg:mt-7 lg:mr-2 "
+                            <button
+                              onClick={() => removeFromCart(item.id, item.size)}
+                              className="w-8 h-8 mt-7 mr-4 rounded-full border border-black flex items-center justify-center hover:bg-black hover:text-white transition-colors font-extrabold"
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="18"
+                                height="18"
+                                viewBox="0 0 24 24"
+                                className="font-extrabold"
                               >
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  width="18"
-                                  height="18"
-                                  viewBox="0 0 24 24"
-                                  className="font-extrabold"
-                                >
-                                  <path
-                                    fill="currentColor"
-                                    d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"
-                                  />
-                                </svg>
-                              </button>
+                                <path
+                                  fill="currentColor"
+                                  d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"
+                                />
+                              </svg>
+                            </button>
                           </div>
                         </div>
                       </div>

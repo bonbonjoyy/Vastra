@@ -171,7 +171,7 @@ router.post("/google-login", async (req, res) => {
         },
       },
       process.env.JWT_SECRET,
-      { expiresIn: "12h" }
+      { expiresIn: "7d" }
     );
 
     res.json({

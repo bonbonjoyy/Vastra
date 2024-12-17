@@ -1,20 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../../components/Header/Header';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload, faHeart } from '@fortawesome/free-solid-svg-icons';
 
 function Casual() {
-  const [selectedImage, setSelectedImage] = useState(null); // State untuk gambar yang diklik
-  const additionalImages = [
-    '/asset/image/download (5).jpeg',
-    '/asset/image/download (6).jpeg',
-    '/asset/image/download (7).jpeg',
-    '/asset/image/download (9).jpeg',
-    '/asset/image/download (10).jpeg', // Gambar tambahan untuk inspirasi casual
-    '/asset/image/download (11).jpeg',
-  ];
+  const [selectedImage, setSelectedImage] = useState(null); // State for the selected image
+  const [galeriImages, setGaleriImages] = useState([]); // State for the gallery images
 
-  // Fungsi untuk menutup popup
+  useEffect(() => {
+    // Fetch gallery data from the API
+    const fetchGaleri = async () => {
+      try {
+        const response = await fetch('http://localhost:3333/api/galeris/kategori/Harian/subCategory/Casual');
+        const data = await response.json();
+        setGaleriImages(data); // Store gallery data in state
+      } catch (error) {
+        console.error('Error fetching galeri:', error);
+      }
+    };
+
+    fetchGaleri();
+  }, []);
+
+  // Function to close the popup
   const closePopup = () => {
     setSelectedImage(null);
   };
@@ -36,23 +44,23 @@ function Casual() {
         Kelebihan casual dapat memberikan kesan yang ingin tampil santai namun tetap stylish. Dengan sedikit usaha dalam padu padan, gaya ini dapat mencerminkan kepribadian dan memberikan kenyamanan sepanjang hari.          </p>
       </div>
 
-      {/* Galeri Gambar */}
-      <section className="mt-16 bg-white py-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-screen-xl mx-auto px-4">
-          {additionalImages.map((image, index) => (
+      <section className="mt-6 mb-16 bg-white py-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-screen-xl mx-auto px-[145px]">
+          {/* Loop through gallery images fetched from API */}
+          {galeriImages.map((item, index) => (
             <div
               key={index}
-              className="flex items-center justify-center bg-gray-50 hover:scale-105 transition-transform duration-300 cursor-pointer rounded-lg shadow-lg transform hover:shadow-xl"
-              onClick={() => setSelectedImage(image)}
+              className="flex items-center justify-center bg-gray-50 hover:scale-105 transition-transform duration-300 cursor-pointer shadow-lg transform hover:shadow-xl"
+              onClick={() => setSelectedImage(item.image)} // Click image to select
             >
-              <div className="bg-white rounded-lg overflow-hidden shadow-md w-full max-w-sm">  {/* Adjusted max-w-sm for smaller card */}
+              <div className="bg-white overflow-hidden shadow-md w-full max-w-sm">
                 <img
-                  src={image}
-                  alt={`Inspirasi Casual ${index + 1}`}
-                  className="object-contain w-full h-56"  // Adjusted height for the image size
+                  src={`http://localhost:3333${item.image}`} // Image path from the API
+                  alt={`Casual ${index + 1}`}
+                  className="object-contain w-full h-56"
                 />
                 <div className="p-4 mt-4">
-                  <p className="text-center text-gray-800 font-semibold">Casual Item {index + 1}</p>
+                <p className="text-center text-gray-800 font-semibold">{item.title}</p>
                 </div>
               </div>
             </div>
@@ -63,33 +71,26 @@ function Casual() {
       {/* Popup Modal */}
       {selectedImage && (
         <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-4 w-2/5 max-w-sm relative">
+          <div className="bg-white p-4 w-full max-w-sm max-h-[90vh] h-auto overflow-auto relative">
             <button
               className="absolute top-2 right-2 text-gray-500 hover:text-gray-800"
               onClick={closePopup}
             >
               ✖
             </button>
-            <img src={selectedImage} alt="Selected Casual" className="w-full mb-4 rounded max-w-full" />
-            
-            {/* Tombol dengan Background dan Icons */}
-            <div className="flex flex-col items-center justify-between bg-gray-100 p-4 rounded">
-{/* Tombol Download */}
-<a
-  href={selectedImage} // Tautan ke gambar yang akan diunduh
-  download // Menjadikan elemen ini tombol unduh
-  className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mb-2 w-full flex items-center justify-center"
->
-  <FontAwesomeIcon icon={faDownload} className="mr-2" />
-  Download
-</a>
+            <img src={`http://localhost:3333${selectedImage}`} alt="Selected FullBody Suit" className="w-full mb-4 max-w-full" />
 
-{/* Tombol Favorite */}
-<button className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 w-full flex items-center justify-center">
-  <FontAwesomeIcon icon={faHeart} className="mr-2" />
-  Favorite
-</button>
-</div>
+            {/* Action Buttons with Icons */}
+            <div className="flex flex-col items-center justify-between bg-gray-100 p-4">
+              <a
+                href={`http://localhost:3333${selectedImage}`}
+                download
+                className="bg-blue-500 text-white px-4 py-2 hover:bg-blue-600 mb-2 w-full flex items-center justify-center"
+              >
+                <FontAwesomeIcon icon={faDownload} className="mr-2" />
+                Download
+              </a>
+            </div>
           </div>
         </div>
       )}

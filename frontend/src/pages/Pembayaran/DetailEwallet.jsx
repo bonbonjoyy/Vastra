@@ -56,137 +56,73 @@ export default function DetailEwallet() {
   };
 
   return (
-    <div className="flex w-full flex-col bg-white-a700">
-      <Header className="self-stretch" />
-
-      <div className="mt-[24px] mx-6 min-h-[806px] mb-[133px]
-                      mt-[24px] mx-6 min-h-[806px] mb-[133px]
-                      sm:mt-[74px] sm:mx-[123px] sm:min-h-[806px] sm:mb-[133px]
-                      md:mt-[74px] md:mx-[123px] md:min-h-[806px] md:mb-[133px]
-                      lg:mt-[74px] lg:mx-[145px] lg:min-h-[806px] lg:mb-[133px]">
-
-        <div className="flex gap-[100px] flex-col sm:flex-col md:flex-col lg:flex-row">
-
-          {/* Left Section - E-wallet Selection */}
-          <div className="flex-1">
-            <Heading as="h1" className="text-[36px] font-bold text-black mb-8">
-              Pilih E-Wallet
-            </Heading>
-
-
-            <div className="flex flex-col gap-10">
-              {ewalletOptions.map((ewallet) => (
-                <div
-                  key={ewallet.id}
-                  onClick={() => handleEwalletSelect(ewallet)}
-                  className={`border p-6 px-8 cursor-pointer transition-all ${
-                    selectedEwallet?.id === ewallet.id
-                      ? "border-black"
-                      : "border-gray-300 hover:border-black"
-                  }`}
-                >
-                  <div className="flex items-center justify-between w-full">
-                    <Text className="text-[18px] font-medium">
-                      {ewallet.name}
-                    </Text>
-                    <div className="flex items-center gap-4">
-                      <Img
-                        src={ewallet.logo}
-                        alt={ewallet.name}
-                        className="h-[34px]"
-                      />
-                      {selectedEwallet?.id === ewallet.id && (
-                        <div className="text-black">✓</div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              ))}
+    <div className="flex flex-col bg-white rounded-lg p-4 w-full sm:max-w-md md:max-w-lg mx-auto">
+      {/* E-Wallet Selection */}
+      <Heading as="h2" className="text-2xl font-semibold mb-4 text-center">
+        Pilih E-Wallet
+      </Heading>
+      <div className="flex flex-col gap-4 mb-4">
+        {ewalletOptions.map((ewallet) => (
+          <div
+            key={ewallet.id}
+            onClick={() => handleEwalletSelect(ewallet)}
+            className={`border p-4 cursor-pointer transition-all ${
+              selectedEwallet?.id === ewallet.id
+                ? "border-black"
+                : "border-gray-300 hover:border-black"
+            }`}
+          >
+            <div className="flex items-center justify-between">
+              <Text className="text-lg font-medium">{ewallet.name}</Text>
+              <Img src={ewallet.logo} alt={ewallet.name} className="h-8" />
             </div>
           </div>
-
-          {/* Right Section - Payment Details */}
-          <div className="w-full sm:w-[277px] md:w-[377px] lg:w-[477px]">
-            <div className="border border-black mx-0
-                              sm:mx-0
-                              md:mr-5
-                              lg:mr-5 mt-1">
-              <div className="bg-black p-4">
-                <Text className="text-[16px] font-bold text-white text-center">
-                  Pembayaran Vastra
-                </Text>
-              </div>
-
-              <div className="p-4">
-                <Text className="text-[36px] font-bold text-black">
-                  Rp {calculateTotal().toLocaleString()}
-                </Text>
-              </div>
-
-              <PaymentCountdown />
-
-              <div className="p-4">
-                <Text className="text-[22px] font-bold text-black mb-4">
-                  {selectedEwallet?.name || "Pilih E-Wallet"}
-                </Text>
-
-                {selectedEwallet && (
-                  <>
-                    <Text className="text-[16px] mb-6">
-                      {selectedEwallet.description}
-                    </Text>
-
-                    <div className="space-y-4">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <Text className="text-[16px]">Nomor Tujuan</Text>
-                          <Text className="text-[20px]">
-                            {selectedEwallet.phoneNumber}
-                          </Text>
-                        </div>
-                        <Text
-                          className="text-[16px] cursor-pointer hover:text-gray-600"
-                          onClick={() =>
-                            handleCopy(selectedEwallet.phoneNumber)
-                          }
-                        >
-                          Salin
-                        </Text>
-                      </div>
-                    </div>
-
-                    {copyMessage && (
-                      <Text className="text-green-500 text-sm mt-2">
-                        {copyMessage}
-                      </Text>
-                    )}
-                  </>
-                )}
-              </div>
-
-              <div className="p-4 border-t border-black">
-                <Link to="/selesai" className="block w-full">
-                  <div className="bg-black p-2">
-                    <Text className="text-[16px] font-bold text-white text-center block">
-                      Cek Status
-                    </Text>
-                  </div>
-                </Link>
-
-                <Link to="/pembayaran">
-                  <div className="mt-4 text-center">
-                    <Text className="text-[14px] hover:text-gray-600">
-                      Kembali ke halaman pembayaran
-                    </Text>
-                  </div>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
 
-      <Footer />
+      {/* Payment Details */}
+      {selectedEwallet && (
+        <div className="border-t pt-6 mt-6">
+          {/* <Heading as="h3" className="text-xl font-bold text-center mb-4">
+            Detail Pembayaran
+          </Heading> */}
+          
+          {/* Payment Amount */}
+          {/* <Text className="text-3xl font-bold text-center mb-4 text-black">
+            Rp {calculateTotal().toLocaleString()}
+          </Text> */}
+          
+          {/* Countdown */}
+          <PaymentCountdown />
+
+          <div className="text-center mt-6">
+            {/* E-Wallet Name and Description */}
+            <Text className="text-lg font-semibold mb-2">{selectedEwallet.name}</Text>
+            <Text className="text-sm text-gray-600 mb-4">{selectedEwallet.description}</Text>
+
+            {/* Phone Number */}
+            <div className="space-y-4">
+              <div className="flex justify-between items-center">
+                <Text className="text-sm font-medium">Nomor Tujuan</Text>
+                <div className="flex items-center">
+                  <Text className="text-lg font-medium">{selectedEwallet.phoneNumber}</Text>
+                  <Text
+                    className="text-sm text-blue-600 ml-2 cursor-pointer"
+                    onClick={() => handleCopy(selectedEwallet.phoneNumber)}
+                  >
+                    Salin
+                  </Text>
+                </div>
+              </div>
+            </div>
+
+            {/* Copy Message */}
+            {copyMessage && (
+              <Text className="text-green-500 text-sm mt-4">{copyMessage}</Text>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

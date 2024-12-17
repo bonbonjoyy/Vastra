@@ -110,7 +110,7 @@ const Footer = ({ className, ...props }) => {
                                 </Text>
                             </li>
                             <li>
-                            <Link to="/Harian" className="mt-[30px]" onClick={scrollToTop}>
+                            <Link to="https://www.instagram.com/vastraid_/profilecard/?igsh=bW80NXNyMmIyenl3" className="mt-[30px]" onClick={scrollToTop}>
                                 <Text 
                                 as="p" 
                                 className="font-normal text-white 
@@ -123,7 +123,7 @@ const Footer = ({ className, ...props }) => {
                             </Link>
                             </li>
                             <li>
-                            <Link to="/Tips-Bahan" className="mt-5" onClick={scrollToTop}>
+                            <Link to="https://www.facebook.com/?locale=id_ID" className="mt-5" onClick={scrollToTop}>
                                 <Text 
                                 as="p" 
                                 className="font-normal text-white 
@@ -136,7 +136,7 @@ const Footer = ({ className, ...props }) => {
                             </Link>
                             </li>
                             <li>
-                            <a href="Trending" className="mt-5" onClick={scrollToTop}>
+                            <a href="Akun Belum Ada" className="mt-5" onClick={scrollToTop}>
                                 <Text 
                                 as="p" 
                                 className="font-normal text-white 

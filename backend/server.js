@@ -1,25 +1,52 @@
-// backend/server.js
+//backend/server.js
 const express = require("express");
 const cors = require("cors");
 const router = require("./routes/index.js");
-
+const path = require("path");
 require("dotenv").config();
 
 const app = express();
-const port = 3333;
+const port = process.env.PORT || 3333;
 
+// Middleware untuk mengelola CORS
 app.use(
   cors({
     exposedHeaders: ["Content-Type", "Authorization"],
-    origin: "http://localhost:5173",
+    origin: process.env.CLIENT_URL || "http://localhost:5173",
   })
 );
+
+// Middleware untuk parsing JSON
 app.use(express.json());
-app.use("/uploads", express.static("public/uploads"));
+
+// Middleware untuk melayani file statis (gambar, dll.)
+app.use("/uploads", express.static(path.join(__dirname, "public/uploads")));
+
+// Rute utama aplikasi
 app.use(router);
 
+// Rute untuk memastikan server berjalan
 app.get("/", (req, res) => {
   res.send("Backend is running!");
 });
 
-app.listen(port, () => console.log(`Server is running on port ${port}`));
+// Middleware untuk rute yang tidak ditemukan
+app.use((req, res, next) => {
+  res.status(404).json({
+    message: "Rute yang Anda cari tidak ditemukan. Pastikan URL sudah benar.",
+  });
+});
+
+// Middleware untuk menangani error secara global
+app.use((err, req, res, next) => {
+  console.error("Error: ", err.message);
+  res.status(err.status || 500).json({
+    message: "Terjadi kesalahan pada server.",
+    error: process.env.NODE_ENV === "development" ? err.message : {},
+  });
+});
+
+// Menjalankan server
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
