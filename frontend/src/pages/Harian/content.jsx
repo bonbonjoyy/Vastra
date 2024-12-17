@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductCard from '/src/components/ProductCard/ProductCard';
+import ProductCard from '../../components/ProductCard/ProductCard';
 import SectionDivider from '../../components/SectionDivider/SectionDivider';
 
 function Harian() {
