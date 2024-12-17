@@ -12,7 +12,7 @@ const port = process.env.PORT || 3333;
 app.use(
   cors({
     exposedHeaders: ["Content-Type", "Authorization"],
-    origin: process.env.CLIENT_URL || "http://localhost:5173",
+    origin: process.env.CLIENT_URL || "https://vastra-frontend-orpin.vercel.app/",
   })
 );
 
