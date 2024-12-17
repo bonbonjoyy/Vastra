@@ -478,7 +478,7 @@ export default function Header({ ...props }) {
                           <img
                              src={
                               item.image
-                                ? `http://localhost:3333${item.image}`
+                                ? `https://vastra-backend.vercel.app${item.image}`
                                 : "/asset/image/productplaceholder.svg"
                             }
                             alt={item.title}

@@ -85,7 +85,7 @@ export default function Content() {
                 <img
                   src={
                     product.image
-                      ? `http://localhost:3333${product.image}`
+                      ? `https://vastra-backend.vercel.app${product.image}`
                       : "/asset/image/productplaceholder.svg"
                   }
                   alt={product.nama_product}
@@ -102,7 +102,7 @@ export default function Content() {
                 <img
                   src={
                     product.image
-                      ? `http://localhost:3333${product.image}`
+                      ? `https://vastra-backend.vercel.app${product.image}`
                       : "/asset/image/productplaceholder.svg"
                   }
                   alt={product.nama_product}

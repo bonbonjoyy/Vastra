@@ -155,7 +155,7 @@ const GaleriManagement = () => {
                     <div key={galeri.id} className="bg-white border shadow rounded-lg p-2 max-w-xs"> 
                     <div className="w-full h-[300px] mb-4 overflow-hidden rounded-lg">
                     <img
-                        src={galeri.image ? `http://localhost:3333${galeri.image}` : "/asset/image/galeriplaceholder.svg"}
+                        src={galeri.image ? `https://vastra-backend.vercel.app${galeri.image}` : "/asset/image/galeriplaceholder.svg"}
                         alt="Galeri"
                         className="w-full h-full object-contain" // Menggunakan object-contain untuk menjaga gambar tetap terlihat utuh
                     />
@@ -226,7 +226,7 @@ const GaleriManagement = () => {
                         galeriData.image instanceof File
                           ? URL.createObjectURL(galeriData.image)
                           : galeriData.image
-                          ? `http://localhost:3333${galeriData.image}`
+                          ? `https://vastra-backend.vercel.app${galeriData.image}`
                           : "/asset/image/galeriplaceholder.svg"
                       }
                       alt="Galeri"

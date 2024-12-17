@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:3333/api",
+  baseURL: "https://vastra-backend.vercel.app/api",
 });
 
 export const getProductById = async (id) => {

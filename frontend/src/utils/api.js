@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "http://localhost:3333",
+    baseURL: "https://vastra-backend.vercel.app",
 });
 
 // Interceptor untuk handle token dan content type

@@ -134,7 +134,7 @@ export default function OrderDetail() {
                       <Text className="text-lg font-bold">Pembayaran:</Text>
                       {order.image ? (
                         <button
-                          onClick={() => handleImageClick(`http://localhost:3333${order.image}`)}
+                          onClick={() => handleImageClick(`https://vastra-backend.vercel.app${order.image}`)}
                           className="bg-gray-500 text-white px-2 py-1 rounded-md text-xs flex items-center gap-1"
                         >
                           <i className="fas fa-eye"></i> Bukti

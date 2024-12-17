@@ -11,7 +11,7 @@ function Casual() {
     // Fetch gallery data from the API
     const fetchGaleri = async () => {
       try {
-        const response = await fetch('http://localhost:3333/api/galeris/kategori/Harian/subCategory/Casual');
+        const response = await fetch('https://vastra-backend.vercel.app/api/galeris/kategori/Harian/subCategory/Casual');
         const data = await response.json();
         setGaleriImages(data); // Store gallery data in state
       } catch (error) {
@@ -55,7 +55,7 @@ function Casual() {
             >
               <div className="bg-white overflow-hidden shadow-md w-full max-w-sm">
                 <img
-                  src={`http://localhost:3333${item.image}`} // Image path from the API
+                  src={`https://vastra-backend.vercel.app${item.image}`} // Image path from the API
                   alt={`Casual ${index + 1}`}
                   className="object-contain w-full h-56"
                 />
@@ -78,12 +78,12 @@ function Casual() {
             >
               ✖
             </button>
-            <img src={`http://localhost:3333${selectedImage}`} alt="Selected FullBody Suit" className="w-full mb-4 max-w-full" />
+            <img src={`https://vastra-backend.vercel.app${selectedImage}`} alt="Selected FullBody Suit" className="w-full mb-4 max-w-full" />
 
             {/* Action Buttons with Icons */}
             <div className="flex flex-col items-center justify-between bg-gray-100 p-4">
               <a
-                href={`http://localhost:3333${selectedImage}`}
+                href={`https://vastra-backend.vercel.app${selectedImage}`}
                 download
                 className="bg-blue-500 text-white px-4 py-2 hover:bg-blue-600 mb-2 w-full flex items-center justify-center"
               >

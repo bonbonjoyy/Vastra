@@ -79,7 +79,7 @@ export default function Content() {
           {products.map((product) => (
             <div key={product.id}>
               <ProductCard
-                image={product.image ? `http://localhost:3333${product.image}` : "/default-placeholder.png"}
+                image={product.image ? `https://vastra-backend.vercel.app${product.image}` : "/default-placeholder.png"}
                 title={product.nama_product}
                 price={`Rp ${new Intl.NumberFormat('id-ID').format(product.harga)}`}
                 category={category}

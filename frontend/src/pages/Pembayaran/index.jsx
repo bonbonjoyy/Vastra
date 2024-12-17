@@ -80,7 +80,7 @@ export default function Pembayaran() {
           return;
         }
 
-        const response = await fetch("http://localhost:3333/api/checkout", {
+        const response = await fetch("https://vastra-backend.vercel.app/api/checkout", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -230,7 +230,7 @@ export default function Pembayaran() {
                           <img
                              src={
                               item.image
-                                ? `http://localhost:3333${item.image}`
+                                ? `https://vastra-backend.vercel.app${item.image}`
                                 : "/asset/image/productplaceholder.svg"
                             }
                             alt={item.title}

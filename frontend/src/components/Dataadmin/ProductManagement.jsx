@@ -185,7 +185,7 @@ const ProductManagement = () => {
                   >
                     <div className="w-full h-[300px] mb-4 overflow-hidden rounded-lg">
                       <img
-                        src={product.image ? `http://localhost:3333${product.image}` : "/asset/image/productplaceholder.svg"}
+                        src={product.image ? `https://vastra-backend.vercel.app${product.image}` : "/asset/image/productplaceholder.svg"}
                         alt="Product"
                         className="w-full h-full object-contain"
                       />
@@ -232,7 +232,7 @@ const ProductManagement = () => {
                       src={productData.image instanceof File
                         ? URL.createObjectURL(productData.image)
                         : productData.image
-                          ? `http://localhost:3333${productData.image}`
+                          ? `https://vastra-backend.vercel.app${productData.image}`
                           : "/asset/image/productplaceholder.svg"}
                       alt="Product"
                       className="w-full h-full object-cover"

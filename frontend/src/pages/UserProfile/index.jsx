@@ -233,7 +233,7 @@ export default function UserProfile() {
                             userData.profile_image instanceof File
                               ? URL.createObjectURL(userData.profile_image)
                               : userData.profile_image
-                              ? `http://localhost:3333${userData.profile_image}` // Tambah base URL
+                              ? `https://vastra-backend.vercel.app${userData.profile_image}` // Tambah base URL
                               : "/asset/image/userprofil.svg"
                           }
                           alt="Profile"
@@ -390,7 +390,7 @@ export default function UserProfile() {
               <img
                 src={
                   userData.profile_image
-                    ? `http://localhost:3333${userData.profile_image}` // Tambah base URL
+                    ? `https://vastra-backend.vercel.app${userData.profile_image}` // Tambah base URL
                     : "/asset/image/userprofil.svg"
                 }
                 alt="Profile"

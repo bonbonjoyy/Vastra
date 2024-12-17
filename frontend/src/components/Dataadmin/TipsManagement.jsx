@@ -190,7 +190,7 @@ const TipsManagement = () => {
                         <img
                           src={
                             tip.image
-                              ? `http://localhost:3333${tip.image}`
+                              ? `https://vastra-backend.vercel.app${tip.image}`
                               : "/asset/image/tipsplaceholder.svg"
                           }
                           alt="Tips"
@@ -241,7 +241,7 @@ const TipsManagement = () => {
                         tipsData.image instanceof File
                           ? URL.createObjectURL(tipsData.image)
                           : tipsData.image
-                          ? `http://localhost:3333${tipsData.image}`
+                          ? `https://vastra-backend.vercel.app${tipsData.image}`
                           : "/asset/image/tipsplaceholder.svg"
                       }
                       alt="Tips"

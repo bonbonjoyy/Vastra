@@ -14,7 +14,7 @@ const HomePage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:3333/api/kreasis");
+        const response = await fetch("https://vastra-backend.vercel.app/api/kreasis");
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -22,7 +22,7 @@ const HomePage = () => {
 
         const transformedData = data.map((item) => ({
           src: item.image
-            ? `http://localhost:3333${item.image}`
+            ? `https://vastra-backend.vercel.app${item.image}`
             : "/asset/image/placeholder.svg",
           kulit: item.kulit || null,
           badan: item.badan || null,

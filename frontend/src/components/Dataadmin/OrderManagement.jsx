@@ -135,7 +135,7 @@ const OrderManagement = () => {
               <div className="mt-4 flex gap-4 items-center">
                 {order.image ? (
                   <button
-                    onClick={() => handleImageClick(`http://localhost:3333${order.image}`)}
+                    onClick={() => handleImageClick(`https://vastra-backend.vercel.app${order.image}`)}
                     className="bg-gray-500 text-white px-2 py-1 rounded-md text-xs flex items-center gap-1"
                   >
                     <i className="fas fa-eye"></i> Bukti &nbsp;

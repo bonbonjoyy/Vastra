@@ -223,7 +223,7 @@ const UserManagement = () => {
                       <img
                         src={
                           user.profile_image
-                            ? `http://localhost:3333${user.profile_image}`
+                            ? `https://vastra-backend.vercel.app${user.profile_image}`
                             : "/asset/image/userprofil.svg"
                         }
                         alt="Profile"
@@ -284,7 +284,7 @@ const UserManagement = () => {
                         formData.profile_image instanceof File
                           ? URL.createObjectURL(formData.profile_image)
                           : formData.profile_image
-                          ? `http://localhost:3333${formData.profile_image}`
+                          ? `https://vastra-backend.vercel.app${formData.profile_image}`
                           : "/asset/image/userprofil.svg"
                       }
                       alt="Profile"
@@ -409,7 +409,7 @@ const UserManagement = () => {
               <img
                 src={
                   selectedPhoto
-                    ? `http://localhost:3333${selectedPhoto}`
+                    ? `https://vastra-backend.vercel.app${selectedPhoto}`
                     : "/asset/image/userprofil.svg"
                 }
                 alt="Profile"
